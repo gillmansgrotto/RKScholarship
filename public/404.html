@@ -6,6 +6,16 @@
 <title>Page not found — Rose Kelley Scholarship</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 34'%3E%3Cpath d='M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z' stroke='%23B76E79' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    var t = null;
+    try { t = localStorage.getItem('rk-theme'); } catch(e){}
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{min-height:100vh;display:flex;align-items:center;justify-content:center;
@@ -16,12 +26,10 @@
   a.btn{display:inline-block;padding:12px 24px;border-radius:999px;background:#B76E79;
     color:#3A2228;font-weight:700;text-decoration:none}
   a.btn:hover{background:#9C5560;color:#fff}
-  @media (prefers-color-scheme: dark){
-    body{background:#211419;color:#F2E6E9}
-    p{color:#C9B6BC}
-    a.btn{background:#C9838D;color:#2A1B21}
-    a.btn:hover{background:#DCA8B0;color:#2A1B21}
-  }
+  :root[data-theme="dark"] body{background:#211419;color:#F2E6E9}
+  :root[data-theme="dark"] p{color:#C9B6BC}
+  :root[data-theme="dark"] a.btn{background:#C9838D;color:#2A1B21}
+  :root[data-theme="dark"] a.btn:hover{background:#DCA8B0;color:#2A1B21}
 </style>
 </head>
 <body>
