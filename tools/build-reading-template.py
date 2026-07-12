@@ -54,7 +54,7 @@ ws["B3"].font = Font(italic=True, size=12, color=INK)
 steps = [
     ("1.", "Export the applications: on the scholarship computer, run  node tools/export-applications.js"),
     ("2.", "Open the Applications tab, click cell A1 (the header row — the CSV brings its own), then File → Import → Upload the applications CSV → 'Replace data at selected cell'. The first applicant must land in row 2; if you ever see two header rows, delete the extra one."),
-    ("3.", "Each reader scores every applicant on the Scoring tab — Reader 1 uses the rows marked Reader 1, Reader 2 likewise. Scores are whole numbers 1–5 (the tab enforces this). Do not discuss scores until both readers are done."),
+    ("3.", "Rose scores every applicant on the 'Scoring - Rose' tab; Ali scores on 'Scoring - Ali'. One row per applicant, scores are whole numbers 1-5 (the tabs enforce this). Score independently - do not discuss until both tabs are complete."),
     ("4.", "The Results tab fills itself in: it totals both readers per applicant and ranks them. Highest combined score receives the award."),
     ("5.", "Ties break by the 'What $1,000 changes' score, then a joint re-read (same as published on the site)."),
     ("6.", "A reader with any personal connection to an applicant skips those rows and a replacement reader scores them instead."),
@@ -98,44 +98,44 @@ for r in range(2, MAX_ROWS + 2):
     for c in range(1, 8):
         ws.cell(row=r, column=c).border = border
 
-# ---------- 3. Scoring ----------
-ws = wb.create_sheet("Scoring")
-ws.sheet_properties.tabColor = ROSE_DEEP
-headers = ["ID", "Applicant", "Reader",
-           "A path of your own (1–5)", "Steps already taken (1–5)",
-           "What $1,000 changes (1–5)", "Total", "Notes (private to readers)"]
-widths = [22, 24, 12, 24, 24, 24, 10, 46]
-for c, (h, w) in enumerate(zip(headers, widths), start=1):
-    ws.cell(row=1, column=c, value=h)
-    ws.column_dimensions[get_column_letter(c)].width = w
-style_header(ws, len(headers))
-ws.freeze_panes = "A2"
+# ---------- 3. Per-reader scoring tabs ----------
+READERS = ["Rose", "Ali"]
+for reader in READERS:
+    ws = wb.create_sheet(f"Scoring - {reader}")
+    ws.sheet_properties.tabColor = ROSE_DEEP
+    headers = ["ID", "Applicant",
+               "A path of your own (1–5)", "Steps already taken (1–5)",
+               "What $1,000 changes (1–5)", "Total", "Notes"]
+    widths = [22, 26, 24, 24, 24, 10, 46]
+    for c, (h, w) in enumerate(zip(headers, widths), start=1):
+        ws.cell(row=1, column=c, value=h)
+        ws.column_dimensions[get_column_letter(c)].width = w
+    style_header(ws, len(headers))
+    ws.freeze_panes = "A2"
 
-# Two rows per applicant, auto-pulled from Applications
-for i in range(MAX_ROWS):
-    app_row = 2 + i
-    for j, reader in enumerate(("Reader 1", "Reader 2")):
-        r = 2 + i * 2 + j
+    # One row per applicant, auto-pulled from Applications
+    for i in range(MAX_ROWS):
+        r = 2 + i
+        app_row = 2 + i
         blank = f'OR(Applications!A{app_row}="",Applications!A{app_row}="ID")'
         ws.cell(row=r, column=1, value=f'=IF({blank},"",Applications!A{app_row})')
         ws.cell(row=r, column=2, value=f'=IF({blank},"",Applications!C{app_row})')
-        ws.cell(row=r, column=3, value=f'=IF({blank},"","{reader}")')
-        ws.cell(row=r, column=7, value=f'=IF(COUNT(D{r}:F{r})=0,"",SUM(D{r}:F{r}))')
-        for c in range(1, 9):
+        ws.cell(row=r, column=6, value=f'=IF(COUNT(C{r}:E{r})=0,"",SUM(C{r}:E{r}))')
+        for c in range(1, 8):
             ws.cell(row=r, column=c).border = border
-        ws.cell(row=r, column=8).alignment = Alignment(wrap_text=True, vertical="top")
+        ws.cell(row=r, column=7).alignment = Alignment(wrap_text=True, vertical="top")
 
-dv = DataValidation(type="whole", operator="between", formula1=1, formula2=5,
-                    allow_blank=True, showErrorMessage=True,
-                    errorTitle="Scores are 1–5",
-                    error="Each rubric category is scored 1 to 5, whole numbers only.")
-ws.add_data_validation(dv)
-dv.add(f"D2:F{1 + MAX_ROWS * 2}")
+    dv = DataValidation(type="whole", operator="between", formula1=1, formula2=5,
+                        allow_blank=True, showErrorMessage=True,
+                        errorTitle="Scores are 1–5",
+                        error="Each rubric category is scored 1 to 5, whole numbers only.")
+    ws.add_data_validation(dv)
+    dv.add(f"C2:E{1 + MAX_ROWS}")
 
 # ---------- 4. Results ----------
 ws = wb.create_sheet("Results")
 ws.sheet_properties.tabColor = INK
-headers = ["ID", "Applicant", "Reader 1 total", "Reader 2 total", "Combined",
+headers = ["ID", "Applicant", "Rose total", "Ali total", "Combined",
            "Tie-break: 'What $1,000 changes' combined", "Rank"]
 widths = [22, 26, 14, 14, 12, 32, 8]
 for c, (h, w) in enumerate(zip(headers, widths), start=1):
@@ -147,15 +147,13 @@ ws.freeze_panes = "A2"
 for i in range(MAX_ROWS):
     r = 2 + i
     app_row = 2 + i
-    r1 = 2 + i * 2       # Reader 1 row in Scoring
-    r2 = 3 + i * 2       # Reader 2 row in Scoring
     blank = f'OR(Applications!A{app_row}="",Applications!A{app_row}="ID")'
     ws.cell(row=r, column=1, value=f'=IF({blank},"",Applications!A{app_row})')
     ws.cell(row=r, column=2, value=f'=IF({blank},"",Applications!C{app_row})')
-    ws.cell(row=r, column=3, value=f'=IF({blank},"",Scoring!G{r1})')
-    ws.cell(row=r, column=4, value=f'=IF({blank},"",Scoring!G{r2})')
+    ws.cell(row=r, column=3, value=f"=IF({blank},\"\",'Scoring - Rose'!F{r})")
+    ws.cell(row=r, column=4, value=f"=IF({blank},\"\",'Scoring - Ali'!F{r})")
     ws.cell(row=r, column=5, value=f'=IF({blank},"",IF(COUNT(C{r}:D{r})=0,"",SUM(C{r}:D{r})))')
-    ws.cell(row=r, column=6, value=f'=IF({blank},"",SUM(Scoring!F{r1},Scoring!F{r2}))')
+    ws.cell(row=r, column=6, value=f"=IF({blank},\"\",SUM('Scoring - Rose'!E{r},'Scoring - Ali'!E{r}))")
     ws.cell(row=r, column=7, value=f'=IF(OR({blank},E{r}=""),"",RANK(E{r},$E$2:$E${MAX_ROWS+1}))')
     for c in range(1, 8):
         ws.cell(row=r, column=c).border = border
