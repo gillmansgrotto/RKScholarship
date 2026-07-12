@@ -53,7 +53,7 @@ ws["B3"].font = Font(italic=True, size=12, color=INK)
 
 steps = [
     ("1.", "Export the applications: on the scholarship computer, run  node tools/export-applications.js"),
-    ("2.", "Open the Applications tab, click cell A2, then File → Import → Upload the applications CSV → 'Replace data at selected cell'."),
+    ("2.", "Open the Applications tab, click cell A1 (the header row — the CSV brings its own), then File → Import → Upload the applications CSV → 'Replace data at selected cell'. The first applicant must land in row 2; if you ever see two header rows, delete the extra one."),
     ("3.", "Each reader scores every applicant on the Scoring tab — Reader 1 uses the rows marked Reader 1, Reader 2 likewise. Scores are whole numbers 1–5 (the tab enforces this). Do not discuss scores until both readers are done."),
     ("4.", "The Results tab fills itself in: it totals both readers per applicant and ranks them. Highest combined score receives the award."),
     ("5.", "Ties break by the 'What $1,000 changes' score, then a joint re-read (same as published on the site)."),
