@@ -20,3 +20,5 @@ node_modules/
 # Browser-automation / test output
 .playwright-mcp/
 *.jpeg
+# ...but site images are real content
+!public/*.jpeg
