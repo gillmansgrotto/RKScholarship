@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FBF7F5">
 <script>
   // Set theme before first paint: saved choice wins, else system preference.
   (function(){
@@ -27,6 +28,8 @@
       t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
     document.documentElement.dataset.theme = t;
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.content = t === 'dark' ? '#211419' : '#FBF7F5';
   })();
 </script>
 <style>
@@ -85,6 +88,22 @@
   .theme-btn .sun{display:none}
   :root[data-theme="dark"] .theme-btn .sun{display:block}
   :root[data-theme="dark"] .theme-btn .moon{display:none}
+
+  /* Mobile menu */
+  .menu-btn{
+    display:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);
+    background:transparent;color:var(--ink-soft);place-items:center;cursor:pointer;padding:0;
+  }
+  .menu-btn:hover{border-color:var(--gold);color:var(--gold-deep)}
+  .mobile-menu{border-top:1px solid var(--line)}
+  .mobile-menu ul{list-style:none;padding:6px 24px 14px;display:flex;flex-direction:column}
+  .mobile-menu a{
+    display:block;padding:13px 4px;font-weight:700;font-size:16px;
+    color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);
+  }
+  .mobile-menu li:last-child a{border-bottom:none}
+  @media(max-width:870px){.menu-btn{display:grid}}
+  @media(min-width:871px){.mobile-menu{display:none !important}}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion: reduce){
@@ -170,7 +189,7 @@
   @media(max-width:640px){.hero{padding:56px 24px 48px}.hero-facts{grid-template-columns:1fr;gap:8px}.fact{padding-top:18px}}
 
   /* ---------- Sections ---------- */
-  section{padding:80px 0;border-top:1px solid var(--line)}
+  section{padding:80px 0;border-top:1px solid var(--line);scroll-margin-top:84px}
   @media(max-width:640px){section{padding:56px 0}}
   .section-head{max-width:640px;margin-bottom:44px}
   .section-head h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
@@ -306,7 +325,7 @@
   .sent-panel.show{display:block}
   .sent-panel h4{font-family:'Fraunces',serif;font-size:19px;margin-bottom:8px}
   .sent-panel p{font-size:15px;color:var(--tint-text);margin-bottom:12px}
-  .sent-panel textarea{width:100%;min-height:120px;font-family:inherit;font-size:14px;padding:12px;border:1.5px solid rgba(156,85,96,.35);border-radius:8px;background:var(--card)}
+  .sent-panel textarea{width:100%;min-height:120px;font-family:inherit;font-size:14px;padding:12px;border:1.5px solid rgba(156,85,96,.35);border-radius:8px;background:var(--card);color:var(--ink)}
   .copy-btn{margin-top:10px}
 
   /* Donate */
@@ -372,6 +391,17 @@
   .foot a{font-size:15px;color:#DCA8B0;text-decoration-color:rgba(220,168,176,.4);text-underline-offset:3px}
   .foot a:hover{color:#fff}
   .foot-legal{margin-top:40px;padding-top:22px;border-top:1px solid #52424A;font-size:13px;color:#B09FA7}
+
+  /* Print */
+  @media print{
+    header,.hero-actions,.donate,.sent-panel,.hp-field,.skip-link,footer{display:none !important}
+    body{background:#fff;color:#000}
+    section,.hero{padding:16px 0;border:none;background:#fff !important}
+    .hero::before{display:none}
+    .promise,.elig-card,.rubric-card,.rubric-rules,.apply-panel,.rose-quote{background:#fff;border:1px solid #bbb}
+    a{color:#000}
+    .tl-now{border:1px solid #000;background:#fff;color:#000}
+  }
 </style>
 </head>
 <body>
@@ -397,8 +427,24 @@
         </button>
       </li>
       <li class="keep"><a class="btn gold" href="#donate">Donate</a></li>
+      <li class="keep">
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </li>
     </ul>
   </nav>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#rubric">How we score</a></li>
+      <li><a href="#apply">Apply</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#donate">Donate</a></li>
+    </ul>
+  </div>
 </header>
 
 <main id="top">
@@ -469,7 +515,7 @@
         </div>
       </div>
       <div class="rose-quote">
-        <img class="portrait" src="rose-photo.jpeg" alt="Rose Kelley laughing amid falling confetti" width="200" height="200">
+        <img class="portrait" src="rose-photo.jpeg" alt="Rose Kelley laughing amid falling confetti" width="200" height="200" loading="lazy" decoding="async">
         <blockquote>
           <p>&ldquo;This has always been a life dream of mine, and I am so proud to be able to share this with you. We are amazed by all of you and believe you will have a wonderful future!&rdquo;</p>
           <cite>&mdash; Rose Kelley</cite>
@@ -506,8 +552,8 @@
       </div>
       <ul class="timeline">
         <li class="tl-item"><span class="tl-date">Now<span class="tl-now">You are here</span></span><div><h3>Applications are open</h3><p>Apply any time before the deadline. Applying early doesn't earn extra points — take the time you need.</p></div></li>
-        <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>Submit any time up to 11:59 PM Pacific on this date. If something outside your control is in the way, email us before the deadline — we're humans, not a portal, and we'll work with you.</p></div></li>
         <li class="tl-item"><span class="tl-date">Right away</span><div><h3>We confirm we received it</h3><p>You'll see confirmation on this page the moment you submit, and a confirmation email lands in your inbox within minutes. If anything is missing, we'll follow up and give you time to fix it.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>Submit any time up to 11:59 PM Pacific on this date. If something outside your control is in the way, email us before the deadline — we're humans, not a portal, and we'll work with you.</p></div></li>
         <li class="tl-item"><span class="tl-date">Dec 1, 2026</span><div><h3>Every applicant hears back</h3><p>Not just the recipient — everyone gets an answer by email on or before this date.</p></div></li>
         <li class="tl-item"><span class="tl-date">Jan 2027</span><div><h3>Award is paid</h3><p>In time for the spring term, sent to your school or to you — whichever works better for your situation.</p></div></li>
       </ul>
@@ -608,14 +654,14 @@
         <button class="btn gold" type="button" id="submit-btn">Submit application</button>
 
         <div class="sent-panel" id="success-panel" role="status">
-          <h4>Application received. You're done.</h4>
+          <h4 tabindex="-1">Application received. You're done.</h4>
           <p>Thank you — your application is safely in. We'll email a confirmation within two days, and every applicant hears back by December 1, 2026. A copy of what you sent is below if you'd like to keep it.</p>
           <textarea id="success-copy" readonly aria-label="A copy of your submitted application"></textarea>
           <button class="btn ghost copy-btn" type="button" id="copy-success-btn">Copy my application</button>
         </div>
 
         <div class="sent-panel" id="fallback-panel" role="alert">
-          <h4>That didn't go through — but you have two easy backups.</h4>
+          <h4 tabindex="-1">That didn't go through — but you have two easy backups.</h4>
           <p>Something interrupted the submission (often a network hiccup or a strict browser extension). Nothing was lost: press the button below to open an email draft with your answers filled in, or copy the text and email it to <strong>rosekelleyscholarship@gmail.com</strong> yourself. Every route counts the same.</p>
           <textarea id="fallback-copy" readonly aria-label="Your application text, ready to copy"></textarea>
           <div>
@@ -824,6 +870,8 @@
     const panel = $(id);
     panel.classList.add("show");
     panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const heading = panel.querySelector("h4");
+    if (heading) heading.focus({ preventScroll: true });
   }
 
   let lastApp = null;
@@ -904,6 +952,8 @@
   function syncThemeLabel() {
     const dark = document.documentElement.dataset.theme === "dark";
     themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.content = dark ? "#211419" : "#FBF7F5";
   }
   syncThemeLabel();
   themeBtn.addEventListener("click", () => {
@@ -911,6 +961,20 @@
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem("rk-theme", next); } catch (e) {}
     syncThemeLabel();
+  });
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = $("menu-btn");
+  const mobileMenu = $("mobile-menu");
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.hidden = !mobileMenu.hidden;
+    menuBtn.setAttribute("aria-expanded", String(!mobileMenu.hidden));
+  });
+  mobileMenu.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => {
+      mobileMenu.hidden = true;
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
   });
 
   /* ---------- Donations ---------- */
