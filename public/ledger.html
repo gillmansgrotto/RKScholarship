@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ledger — Rose Kelley Scholarship</title>
+<meta name="description" content="Every dollar in and out of the Rose Kelley Scholarship, published.">
+<link rel="canonical" href="https://rosekelleyscholarship.org/ledger">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 34'%3E%3Cpath d='M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z' stroke='%23B76E79' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@0,400;0,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F5; --ink:#33232A; --ink-soft:#5A4A50;
+    --gold:#B76E79; --gold-deep:#9C5560; --gold-tint:#F9ECEA; --line:#E9DCDA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Atkinson Hyperlegible',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:17px}
+  a{color:var(--gold-deep)}
+  a:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);padding:16px 0}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:17px}
+  main{padding:64px 0 96px}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(30px,5vw,44px);margin-bottom:16px}
+  .lede{color:var(--ink-soft);font-size:18px;max-width:560px;margin-bottom:40px}
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+  th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line)}
+  th{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep)}
+  tr:last-child td{border-bottom:none}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .empty td{color:var(--ink-soft);padding:28px 18px}
+  .note{margin-top:26px;font-size:15px;color:var(--ink-soft);max-width:600px}
+  .back{display:inline-block;margin-top:36px;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="34" height="20" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      Rose Kelley Scholarship
+    </a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>The ledger.</h1>
+    <p class="lede">Every dollar that moves through this scholarship, published as it happens. Donations in, awards out — nothing hidden, nothing skimmed. We cover the costs of running the scholarship ourselves, so operating expenses never appear here.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Date</th><th scope="col">What</th><th scope="col">In</th><th scope="col">Out</th><th scope="col">Balance</th></tr>
+        </thead>
+        <tbody id="ledger-rows">
+          <tr class="empty"><td colspan="5">Nothing yet — the first entry will appear when the first donation arrives. The $1,000 award itself is personally funded and will be recorded here when it's paid out in January 2027.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Donor names are listed only with permission; otherwise entries appear as "donation." Questions about any line? Email <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a>.</p>
+    <a class="back" href="/">&larr; Back to the scholarship</a>
+  </div>
+</main>
+</body>
+</html>

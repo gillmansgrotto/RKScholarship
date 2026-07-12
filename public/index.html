@@ -451,7 +451,8 @@
 
       <div class="apply-panel">
         <h3>Application form</h3>
-        <p>Press Submit and your application comes straight to us — no account, no portal, and you'll see a confirmation right here on the page. Prefer email instead? Send the same answers to <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a>, or request another format (large print, plain text, phone call). Every route is scored identically.</p>
+        <p><strong>What to expect:</strong> four short fields and one essay. No documents, no transcripts, no account. Your answers save on this device as you type, so you can leave and come back. Press Submit and your application comes straight to us — you'll see confirmation right here on the page, and nothing else is due after that.</p>
+        <p>Prefer a different route? <a href="apply.txt">Download the plain-text application</a> and email your answers to <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a>, or request another format (large print, phone call). Every route is scored identically.</p>
         <div class="form-row">
           <div class="field" id="fw-name">
             <label for="f-name">Full name *</label>
@@ -485,6 +486,7 @@
         <div class="field" id="fw-essay">
           <label for="f-essay">Tell us about a path you want to take. *<span class="hint">300–500 words. What do you want to study or build, and why? There is no "right" answer — we want to hear you. Prefer video or audio? Paste a link here instead (it's scored with the same rubric).</span></label>
           <textarea id="f-essay" maxlength="20000"></textarea>
+          <span class="hint" id="word-count" aria-live="polite"></span>
           <span class="err">This is the part we most want to read — please write something, or paste a video/audio link.</span>
         </div>
         <div class="hp-field" aria-hidden="true">
@@ -532,7 +534,7 @@
         <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
         <a class="btn ghost" style="color:var(--paper);border-color:var(--paper)" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
       </div>
-      <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep a running ledger of every dollar in and out, and we'll email you when your dollars are awarded.</p>
+      <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep <a href="/ledger" style="color:#DCA8B0">a public ledger of every dollar in and out</a>, and we'll email you when your dollars are awarded.</p>
     </div>
   </section>
 
@@ -653,6 +655,42 @@
   const fieldVal = (id) => $(id).value.trim();
   const mark = (id, bad) => $(id).classList.toggle("invalid", bad);
 
+  /* Draft autosave: answers persist on this device until submitted. */
+  const DRAFT_KEY = "rk-application-draft";
+  const DRAFT_FIELDS = ["f-name", "f-email", "f-school", "f-year", "f-essay"];
+
+  function updateWordCount() {
+    const words = $("f-essay").value.trim().split(/\s+/).filter(Boolean).length;
+    $("word-count").textContent = words ? words + (words === 1 ? " word" : " words") : "";
+  }
+
+  function saveDraft() {
+    try {
+      const d = {};
+      DRAFT_FIELDS.forEach((id) => { d[id] = $(id).value; });
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+    } catch (e) { /* private mode / storage full — typing still works */ }
+  }
+
+  function clearDraft() {
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+  }
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+    if (saved) DRAFT_FIELDS.forEach((id) => { if (saved[id]) $(id).value = saved[id]; });
+  } catch (e) {}
+  updateWordCount();
+
+  let draftTimer = null;
+  DRAFT_FIELDS.forEach((id) => {
+    $(id).addEventListener("input", () => {
+      clearTimeout(draftTimer);
+      draftTimer = setTimeout(saveDraft, 400);
+      if (id === "f-essay") updateWordCount();
+    });
+  });
+
   function buildBody(a) {
     return "ROSE KELLEY SCHOLARSHIP APPLICATION\n" +
       "--------------------------------------\n" +
@@ -716,6 +754,7 @@
       btn.textContent = "Submitting…";
       try {
         await addDoc(collectionRef, { ...a, submittedAt: serverTimestamp() });
+        clearDraft();
         showPanel("success-panel", "success-copy", a);
         btn.textContent = "Submitted ✓";
       } catch (e) {

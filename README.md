@@ -18,6 +18,12 @@ an extension), the form automatically falls back to opening an email draft to
 - `delete-cycle-data.sh` — end-of-cycle deletion of all applications (the
   privacy policy promises this; asks for confirmation before deleting)
 - `public/og.png` — 1200×630 social share image; `public/404.html` — not-found page
+- `public/ledger.html` — the public money ledger (served at /ledger); add a table
+  row for every donation in and payment out, then redeploy
+- `public/apply.txt` — plain-text version of the application (linked from the form)
+- `public/sitemap.xml` + `public/robots.txt` — search-engine discovery
+- `tools/export-applications.js` — exports all applications to CSV plus a blank
+  two-readers-per-application scoring sheet for reading season
 - `infinite-paths-scholarship_1.html` — original pre-Firebase draft (kept as backup)
 
 ## Launch (one time)
