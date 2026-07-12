@@ -68,8 +68,8 @@
     --glow:rgba(201,131,141,.09);
     --header-bg:rgba(33,20,25,0.92);
   }
-  :root[data-theme="dark"] .btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-  :root[data-theme="dark"] .btn:hover{background:#fff;border-color:#fff;color:#211419}
+  :root[data-theme="dark"] .btn:not(.ghost){background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  :root[data-theme="dark"] .btn:not(.ghost):hover{background:#fff;border-color:#fff;color:#211419}
   :root[data-theme="dark"] .btn.gold{background:var(--gold);border-color:var(--gold);color:#2A1B21}
   :root[data-theme="dark"] .btn.gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#2A1B21}
   :root[data-theme="dark"] .promise li{border-bottom-color:rgba(220,168,176,.18)}
@@ -137,6 +137,8 @@
   .btn.gold[disabled]{opacity:.6;cursor:wait}
   .btn.ghost{background:transparent;color:var(--ink)}
   .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn.ghost.inverse{color:#FBF7F5;border-color:#FBF7F5}
+  .btn.ghost.inverse:hover{background:#FBF7F5;border-color:#FBF7F5;color:#33232A}
   @media(max-width:870px){.nav-links li:not(.keep){display:none}}
 
   /* ---------- Hero ---------- */
@@ -642,7 +644,7 @@
       </div>
       <div class="donate-actions">
         <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
-        <a class="btn ghost" style="color:#FBF7F5;border-color:#FBF7F5" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
+        <a class="btn ghost inverse" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
       </div>
       <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep <a href="/ledger" style="color:#DCA8B0">a public ledger of every dollar in and out</a>, and we'll email you when your dollars are awarded.</p>
     </div>
