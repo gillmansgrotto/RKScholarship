@@ -28,8 +28,42 @@
     --gold-tint:#F9ECEA;
     --moss:#7A5E6B;
     --line:#E9DCDA;
+    --card:#fff;
+    --wash:#F8F0EE;
+    --err:#9C3A1E;
+    --input-border:#D6C3C6;
+    --tint-text:#4a3035;
+    --rail-end:#E5C6CB;
+    --glow:rgba(183,110,121,.10);
+    --header-bg:rgba(251,247,245,0.92);
     --radius:14px;
     --max:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#211419;
+      --ink:#F2E6E9;
+      --ink-soft:#C9B6BC;
+      --gold:#C9838D;
+      --gold-deep:#DCA8B0;
+      --gold-tint:#2F2027;
+      --moss:#8A6E7B;
+      --line:#3D2C33;
+      --card:#2A1B21;
+      --wash:#271821;
+      --err:#E8907A;
+      --input-border:#4A363E;
+      --tint-text:#E3CDD3;
+      --rail-end:#5A3F49;
+      --glow:rgba(201,131,141,.09);
+      --header-bg:rgba(33,20,25,0.92);
+    }
+    .btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+    .btn:hover{background:#fff;border-color:#fff;color:#211419}
+    .btn.gold{background:var(--gold);border-color:var(--gold);color:#2A1B21}
+    .btn.gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#2A1B21}
+    .promise li{border-bottom-color:rgba(220,168,176,.18)}
+    .tl-now{color:#2A1B21}
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -63,7 +97,7 @@
   /* ---------- Header ---------- */
   header{
     position:sticky;top:0;z-index:50;
-    background:rgba(251,247,245,0.92);backdrop-filter:blur(8px);
+    background:var(--header-bg);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--max);margin:0 auto}
@@ -86,7 +120,12 @@
   @media(max-width:870px){.nav-links li:not(.keep){display:none}}
 
   /* ---------- Hero ---------- */
-  .hero{padding:88px 24px 72px;text-align:center;position:relative;overflow:hidden}
+  .hero{padding:88px 24px 72px;text-align:center;position:relative;overflow:hidden;z-index:0}
+  .hero::before{
+    content:"";position:absolute;left:50%;top:-120px;transform:translateX(-50%);
+    width:680px;height:460px;border-radius:50%;z-index:-1;pointer-events:none;
+    background:radial-gradient(closest-side,var(--glow),transparent);
+  }
   .hero .loop{margin:0 auto 30px;display:block}
   .loop path{
     stroke:var(--gold);stroke-width:6;fill:none;stroke-linecap:round;
@@ -137,12 +176,15 @@
   @media(max-width:820px){.portrait{width:160px;height:160px}}
 
   /* Eligibility */
+  #eligibility,#rubric{background:var(--wash)}
   .elig{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:860px}
   @media(max-width:680px){.elig{grid-template-columns:1fr}}
   .elig-card{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px;display:flex;gap:16px;align-items:flex-start;
+    background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);
+    border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start;
+    transition:transform .15s ease,box-shadow .15s ease;
   }
+  .elig-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(51,35,42,.08)}
   .elig-card .dot{
     flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--gold-tint);
     display:grid;place-items:center;color:var(--gold-deep);font-weight:700;font-size:15px;
@@ -155,7 +197,7 @@
   .timeline{max-width:760px;list-style:none;position:relative;padding-left:40px}
   .timeline::before{
     content:"";position:absolute;left:9px;top:26px;bottom:34px;width:2px;
-    background:linear-gradient(to bottom,var(--gold),#E5C6CB);border-radius:2px;
+    background:linear-gradient(to bottom,var(--gold),var(--rail-end));border-radius:2px;
   }
   .tl-item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:22px 0;position:relative}
   .tl-item::before{
@@ -164,6 +206,11 @@
   }
   .tl-item:first-child::before{background:var(--gold)}
   .tl-date{font-family:'Fraunces',serif;font-size:19px;color:var(--gold-deep);font-weight:600}
+  .tl-now{
+    display:inline-block;font-family:'Atkinson Hyperlegible',sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#3A2228;
+    padding:1px 10px;border-radius:999px;margin-left:8px;vertical-align:2px;white-space:nowrap;
+  }
   .tl-item h3{font-family:'Atkinson Hyperlegible',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
   .tl-item p{color:var(--ink-soft);font-size:15px}
   @media(max-width:560px){
@@ -189,19 +236,29 @@
   /* Rubric */
   .rubric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px}
   @media(max-width:820px){.rubric{grid-template-columns:1fr}}
-  .rubric-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-  .rubric-card .pts{font-family:'Fraunces',serif;font-size:15px;color:var(--gold-deep);font-weight:600;letter-spacing:.02em;margin-bottom:10px}
+  .rubric-card{
+    background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);
+    border-radius:var(--radius);padding:26px;transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .rubric-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(51,35,42,.08)}
+  .rubric-card .pts{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-size:15px;color:var(--gold-deep);font-weight:600;letter-spacing:.02em;margin-bottom:10px;
+  }
+  .pips{display:inline-flex;gap:5px}
+  .pips i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--gold);background:var(--gold-tint)}
+  .pips i:last-child{background:var(--gold)}
   .rubric-card h3{font-size:20px;margin-bottom:10px}
   .rubric-card p{font-size:15px;color:var(--ink-soft)}
   .rubric-rules{margin-top:34px;background:var(--gold-tint);border-radius:var(--radius);padding:28px;max-width:1000px}
   .rubric-rules h3{font-size:19px;margin-bottom:12px}
   .rubric-rules ul{list-style:none}
-  .rubric-rules li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:#4a3035}
+  .rubric-rules li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:var(--tint-text)}
   .rubric-rules li::before{content:"—";position:absolute;left:0;color:var(--gold-deep);font-weight:700}
 
   /* Form */
   .apply-panel{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     padding:40px;max-width:760px;margin-top:48px;
   }
   .apply-panel h3{font-size:24px;margin-bottom:6px}
@@ -210,13 +267,13 @@
   .field label{display:block;font-weight:700;font-size:15px;margin-bottom:7px}
   .field .hint{font-weight:400;color:var(--ink-soft);font-size:14px;display:block;margin-top:2px}
   .field input,.field select,.field textarea{
-    width:100%;padding:13px 14px;border:1.5px solid #D6C3C6;border-radius:10px;
+    width:100%;padding:13px 14px;border:1.5px solid var(--input-border);border-radius:10px;
     font-family:inherit;font-size:16px;background:var(--paper);color:var(--ink);
   }
   .field textarea{min-height:170px;resize:vertical}
-  .field .err{display:none;color:#9C3A1E;font-size:14px;font-weight:700;margin-top:6px}
+  .field .err{display:none;color:var(--err);font-size:14px;font-weight:700;margin-top:6px}
   .field.invalid .err{display:block}
-  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#9C3A1E}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--err)}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .form-row .field{display:flex;flex-direction:column}
   .form-row .field input,.form-row .field select{margin-top:auto}
@@ -226,12 +283,12 @@
   .sent-panel{display:none;margin-top:22px;background:var(--gold-tint);border-radius:10px;padding:22px}
   .sent-panel.show{display:block}
   .sent-panel h4{font-family:'Fraunces',serif;font-size:19px;margin-bottom:8px}
-  .sent-panel p{font-size:15px;color:#4a3035;margin-bottom:12px}
-  .sent-panel textarea{width:100%;min-height:120px;font-family:inherit;font-size:14px;padding:12px;border:1.5px solid rgba(156,85,96,.35);border-radius:8px;background:#fff}
+  .sent-panel p{font-size:15px;color:var(--tint-text);margin-bottom:12px}
+  .sent-panel textarea{width:100%;min-height:120px;font-family:inherit;font-size:14px;padding:12px;border:1.5px solid rgba(156,85,96,.35);border-radius:8px;background:var(--card)}
   .copy-btn{margin-top:10px}
 
   /* Donate */
-  .donate{background:var(--ink);color:var(--paper);border-top:none}
+  .donate{background:#33232A;color:#FBF7F5;border-top:none}
   .donate .eyebrow{color:var(--gold)}
   .donate .section-head p{color:#D6C8CC}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px}
@@ -280,14 +337,14 @@
     display:block;margin-top:22px;font-style:normal;font-weight:700;
     font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);
   }
-  .rose-quote .loop-small{margin:0 auto 22px;display:block}
+  .rose-quote .portrait{width:160px;height:160px;margin:0 auto 26px}
   @media(max-width:600px){.rose-quote{padding:36px 22px}}
 
   /* Footer */
-  footer{background:var(--ink);color:#D6C8CC;padding:64px 0 44px}
+  footer{background:#33232A;color:#D6C8CC;padding:64px 0 44px}
   .foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
   .foot p{font-size:15px;color:#D6C8CC;max-width:420px}
-  .foot .brand{margin-bottom:12px;color:var(--paper)}
+  .foot .brand{margin-bottom:12px;color:#FBF7F5}
   .foot ul{list-style:none}
   .foot li{margin-bottom:10px}
   .foot a{font-size:15px;color:#DCA8B0;text-decoration-color:rgba(220,168,176,.4);text-underline-offset:3px}
@@ -372,7 +429,6 @@
           <p>This scholarship carries her name because it funds exactly what she works toward: one more student, one more open path.</p>
         </div>
         <div>
-          <img class="portrait" src="rose-photo.jpeg" alt="Rose Kelley laughing amid falling confetti" width="200" height="200">
           <aside class="promise" aria-label="The beliefs behind this scholarship">
           <h3>The beliefs behind this scholarship</h3>
           <ul>
@@ -385,7 +441,7 @@
         </div>
       </div>
       <div class="rose-quote">
-        <svg class="loop-small" width="68" height="34" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <img class="portrait" src="rose-photo.jpeg" alt="Rose Kelley laughing amid falling confetti" width="200" height="200">
         <blockquote>
           <p>&ldquo;This has always been a life dream of mine, and I am so proud to be able to share this with you. We are so amazed by all of you and believe you will have a wonderful future!&rdquo;</p>
           <cite>&mdash; Rose Kelley</cite>
@@ -421,7 +477,7 @@
         <p>No moving deadlines, no surprises. If anything ever changes, we'll email every applicant directly.</p>
       </div>
       <ul class="timeline">
-        <li class="tl-item"><span class="tl-date">Now</span><div><h3>Applications are open</h3><p>Apply any time before the deadline. Applying early doesn't earn extra points — take the time you need.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Now<span class="tl-now">You are here</span></span><div><h3>Applications are open</h3><p>Apply any time before the deadline. Applying early doesn't earn extra points — take the time you need.</p></div></li>
         <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>Submit any time up to 11:59 PM Pacific on this date. If something outside your control is in the way, email us before the deadline — we're humans, not a portal, and we'll work with you.</p></div></li>
         <li class="tl-item"><span class="tl-date">Right away</span><div><h3>We confirm we received it</h3><p>You'll see confirmation on this page the moment you submit, and a confirmation email lands in your inbox within minutes. If anything is missing, we'll follow up and give you time to fix it.</p></div></li>
         <li class="tl-item"><span class="tl-date">Dec 1, 2026</span><div><h3>Every applicant hears back</h3><p>Not just the recipient — everyone gets an answer by email on or before this date.</p></div></li>
@@ -440,17 +496,17 @@
       </div>
       <div class="rubric">
         <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
+          <p class="pts"><span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>1–5 points, per reader</p>
           <h3>A path of your own</h3>
           <p>How clearly you describe what you want to study, build, or become. Big or small, conventional or not — clarity and genuine interest are what score, not ambition for its own sake.</p>
         </div>
         <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
+          <p class="pts"><span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>1–5 points, per reader</p>
           <h3>Steps already taken</h3>
           <p>Anything you've done to move toward that path: classes, projects, jobs, self-teaching, caregiving, advocacy. Effort counts wherever it happened — not just in school.</p>
         </div>
         <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
+          <p class="pts"><span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>1–5 points, per reader</p>
           <h3>What $1,000 changes</h3>
           <p>How the award concretely helps: tuition, a laptop, transportation, housing, fewer work hours. Specific and honest beats dramatic.</p>
         </div>
@@ -550,7 +606,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Donate</p>
-        <h2 style="color:var(--paper)">Fund the next recipient.</h2>
+        <h2 style="color:#FBF7F5">Fund the next recipient.</h2>
         <p>This scholarship is personally run and personally funded. Every dollar we receive goes straight into the award — we cover all costs of running it ourselves.</p>
       </div>
       <div class="tiers">
@@ -560,7 +616,7 @@
       </div>
       <div class="donate-actions">
         <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
-        <a class="btn ghost" style="color:var(--paper);border-color:var(--paper)" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
+        <a class="btn ghost" style="color:#FBF7F5;border-color:#FBF7F5" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
       </div>
       <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep <a href="/ledger" style="color:#DCA8B0">a public ledger of every dollar in and out</a>, and we'll email you when your dollars are awarded.</p>
     </div>
