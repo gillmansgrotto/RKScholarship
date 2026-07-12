@@ -86,7 +86,7 @@
   @media(max-width:870px){.nav-links li:not(.keep){display:none}}
 
   /* ---------- Hero ---------- */
-  .hero{padding:88px 0 72px;text-align:center;position:relative;overflow:hidden}
+  .hero{padding:88px 24px 72px;text-align:center;position:relative;overflow:hidden}
   .hero .loop{margin:0 auto 30px;display:block}
   .loop path{
     stroke:var(--gold);stroke-width:6;fill:none;stroke-linecap:round;
@@ -106,7 +106,7 @@
   .fact{padding:26px 12px 0}
   .fact strong{font-family:'Fraunces',serif;font-size:30px;display:block;color:var(--ink)}
   .fact span{font-size:14px;color:var(--ink-soft)}
-  @media(max-width:640px){.hero{padding:56px 0 48px}.hero-facts{grid-template-columns:1fr;gap:8px}.fact{padding-top:18px}}
+  @media(max-width:640px){.hero{padding:56px 24px 48px}.hero-facts{grid-template-columns:1fr;gap:8px}.fact{padding-top:18px}}
 
   /* ---------- Sections ---------- */
   section{padding:80px 0;border-top:1px solid var(--line)}
@@ -166,7 +166,12 @@
   .tl-date{font-family:'Fraunces',serif;font-size:19px;color:var(--gold-deep);font-weight:600}
   .tl-item h3{font-family:'Atkinson Hyperlegible',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
   .tl-item p{color:var(--ink-soft);font-size:15px}
-  @media(max-width:560px){.tl-item{grid-template-columns:1fr;gap:4px}}
+  @media(max-width:560px){
+    .timeline{padding-left:30px}
+    .timeline::before{left:5px}
+    .tl-item{grid-template-columns:1fr;gap:4px}
+    .tl-item::before{left:-29px;width:12px;height:12px;top:31px}
+  }
 
   /* Steps */
   .steps{counter-reset:step;max-width:760px}
@@ -329,7 +334,6 @@
           <h3>How we do things</h3>
           <ul>
             <li>Plain language. No trick questions, no jargon.</li>
-            <li>No puzzle-piece imagery — ever.</li>
             <li>Alternative formats available for every step.</li>
             <li>Applications scored by two readers with a public rubric.</li>
             <li>Every applicant gets a decision by a stated date.</li>
