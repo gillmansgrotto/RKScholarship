@@ -22,3 +22,10 @@ node_modules/
 *.jpeg
 # ...but site images are real content
 !public/*.jpeg
+
+# Applicant exports contain PII — never commit them
+applications-*.csv
+scoring-sheet-*.csv
+
+
+/.playwright-mcp
