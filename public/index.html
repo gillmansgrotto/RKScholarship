@@ -266,18 +266,22 @@
   .fine p{font-size:15px;color:var(--ink-soft)}
   .fine p+p{margin-top:10px}
 
-  /* Quote band */
-  .quote-band{background:var(--gold-tint);text-align:center}
-  .quote-band blockquote{max-width:760px;margin:0 auto}
-  .quote-band blockquote p{
+  /* Rose's quote */
+  .rose-quote{
+    margin-top:56px;background:var(--gold-tint);border-radius:var(--radius);
+    padding:48px 40px;text-align:center;
+  }
+  .rose-quote blockquote{max-width:680px;margin:0 auto}
+  .rose-quote blockquote p{
     font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
-    font-size:clamp(22px,3.4vw,31px);line-height:1.45;color:var(--ink);
+    font-size:clamp(20px,2.6vw,26px);line-height:1.5;color:var(--ink);
   }
-  .quote-band cite{
-    display:block;margin-top:26px;font-style:normal;font-weight:700;
-    font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);
+  .rose-quote cite{
+    display:block;margin-top:22px;font-style:normal;font-weight:700;
+    font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);
   }
-  .quote-band .loop-small{margin:0 auto 28px;display:block}
+  .rose-quote .loop-small{margin:0 auto 22px;display:block}
+  @media(max-width:600px){.rose-quote{padding:36px 22px}}
 
   /* Footer */
   footer{background:var(--ink);color:#D6C8CC;padding:64px 0 44px}
@@ -379,6 +383,13 @@
           </ul>
           </aside>
         </div>
+      </div>
+      <div class="rose-quote">
+        <svg class="loop-small" width="68" height="34" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <blockquote>
+          <p>&ldquo;This has always been a life dream of mine, and I am so proud to be able to share this with you. We are so amazed by all of you and believe you will have a wonderful future!&rdquo;</p>
+          <cite>&mdash; Rose Kelley</cite>
+        </blockquote>
       </div>
     </div>
   </section>
@@ -615,17 +626,6 @@
     </div>
   </section>
 
-  <!-- A NOTE FROM ROSE -->
-  <section class="quote-band" aria-label="A note from Rose Kelley">
-    <div class="wrap">
-      <svg class="loop-small" width="68" height="34" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
-      <blockquote>
-        <p>&ldquo;This has always been a life dream of mine, and I am so proud to be able to share this with you. We are so proud of all of you and believe you all will have a wonderful future!&rdquo;</p>
-        <cite>&mdash; Rose Kelley</cite>
-      </blockquote>
-    </div>
-  </section>
-
 </main>
 
 <footer>
@@ -819,7 +819,12 @@
   const DONATE_URL = "https://www.gofundme.com/f/empower-autistic-students-with-rose-kelley-scholarship";
   window.donate = function (amount) {
     if (DONATE_URL) {
-      window.open(DONATE_URL, "_blank", "noopener");
+      // Deep-link to GoFundMe's checkout with the amount pre-filled;
+      // if no amount was chosen, open the campaign page itself.
+      const url = amount > 0
+        ? DONATE_URL.replace(/\/+$/, "") + "/donate?amount=" + amount
+        : DONATE_URL;
+      window.open(url, "_blank", "noopener");
     } else {
       const subj = amount > 0 ? "I'd like to donate $" + amount : "I'd like to donate";
       window.location.href = "mailto:" + CONTACT_EMAIL +
