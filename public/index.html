@@ -344,7 +344,7 @@
           <p class="eyebrow">Why this exists</p>
           <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:18px">Built by the autism community, for autistic students.</h2>
           <p>Autistic students are talented, driven, and full of ideas — and they graduate college at lower rates than their peers, often because of barriers that have nothing to do with ability: cost, inaccessible processes, and systems that weren't designed with them in mind.</p>
-          <p>The Rose Kel ley Scholarship exists to remove one of those barriers. We fund autistic students directly, and we designed every part of this process — from this website to the application itself — to be sensory-friendly, predictable, and written in plain language.</p>
+          <p>The Rose Kelley Scholarship exists to remove one of those barriers. We fund autistic students directly, and we designed every part of this process — from this website to the application itself — to be sensory-friendly, predictable, and written in plain language.</p>
           <p>The scholarship carries Rose Kelley's name — <a href="#rose">meet her below</a>. Our symbol comes from the neurodiversity movement: an infinite spectrum of minds, each with its own path forward.</p>
         </div>
         <aside class="promise" aria-label="Our commitments">
@@ -819,10 +819,11 @@
   const DONATE_URL = "https://www.gofundme.com/f/empower-autistic-students-with-rose-kelley-scholarship";
   window.donate = function (amount) {
     if (DONATE_URL) {
-      // Deep-link to GoFundMe's checkout with the amount pre-filled;
-      // if no amount was chosen, open the campaign page itself.
+      // GoFundMe no longer supports pre-filling an amount via URL, so tier
+      // clicks deep-link straight to checkout; the plain Donate button
+      // opens the campaign page.
       const url = amount > 0
-        ? DONATE_URL.replace(/\/+$/, "") + "/donate?amount=" + amount
+        ? DONATE_URL.replace(/\/+$/, "") + "/donate"
         : DONATE_URL;
       window.open(url, "_blank", "noopener");
     } else {
