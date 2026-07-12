@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Applicants may submit an application, and nothing else.
+    // Applications contain PII: no client may ever read, change,
+    // or delete them. The review panel reads via the Firebase
+    // console, which bypasses these rules.
+    match /applications/{applicationId} {
+      allow create: if isValidApplication();
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidApplication() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['name', 'email', 'school', 'stage', 'essay', 'submittedAt'])
+        && d.keys().hasAll(['name', 'email', 'school', 'stage', 'essay', 'submittedAt'])
+        && d.name is string   && d.name.size() > 0   && d.name.size() <= 200
+        && d.email is string  && d.email.matches('.+@.+\\..+') && d.email.size() <= 320
+        && d.school is string && d.school.size() > 0 && d.school.size() <= 300
+        && d.stage is string  && d.stage.size() > 0  && d.stage.size() <= 100
+        && d.essay is string  && d.essay.size() > 0  && d.essay.size() <= 20000
+        && d.submittedAt == request.time;
+    }
+  }
+}

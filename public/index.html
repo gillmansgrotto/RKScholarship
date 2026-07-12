@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Kelley Scholarship — a $2,500 award for autistic students</title>
+<meta name="description" content="A personally funded scholarship for autistic students. Plain-language application, published rubric, and every dollar received goes to students. Deadline: October 15, 2026.">
+<meta property="og:title" content="Rose Kelley Scholarship">
+<meta property="og:description" content="A $2,500 scholarship for autistic students. Clear eligibility, a plain-language application, decisions for every applicant by December 1.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://__SITE_HOST__/">
+<meta property="og:image" content="https://__SITE_HOST__/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 34'%3E%3Cpath d='M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z' stroke='%23B76E79' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F5;
+    --ink:#33232A;
+    --ink-soft:#5A4A50;
+    --gold:#B76E79;
+    --gold-deep:#9C5560;
+    --gold-tint:#F9ECEA;
+    --moss:#7A5E6B;
+    --line:#E9DCDA;
+    --radius:14px;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:'Atkinson Hyperlegible',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-0.01em}
+  a{color:var(--gold-deep)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+    outline:3px solid var(--gold);outline-offset:2px;border-radius:4px;
+  }
+  .skip-link{
+    position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+    padding:12px 20px;z-index:100;border-radius:0 0 10px 0;font-weight:700;text-decoration:none;
+  }
+  .skip-link:focus{left:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold-deep);margin-bottom:14px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,247,245,0.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--max);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:17px}
+  .brand svg{flex-shrink:0}
+  .nav-links{display:flex;gap:24px;align-items:center;list-style:none}
+  .nav-links a{color:var(--ink-soft);text-decoration:none;font-size:15px;font-weight:700}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-block;padding:12px 24px;border-radius:999px;border:2px solid var(--ink);
+    background:var(--ink);color:var(--paper);font-weight:700;font-size:15px;
+    text-decoration:none;cursor:pointer;font-family:inherit;transition:transform .15s ease,background .15s ease;
+  }
+  .btn:hover{background:#4A333D;border-color:#4A333D}
+  .btn.gold{background:var(--gold);border-color:var(--gold);color:#3A2228}
+  .btn.gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff}
+  .btn.gold[disabled]{opacity:.6;cursor:wait}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:870px){.nav-links li:not(.keep){display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 72px;text-align:center;position:relative;overflow:hidden}
+  .hero .loop{margin:0 auto 30px;display:block}
+  .loop path{
+    stroke:var(--gold);stroke-width:6;fill:none;stroke-linecap:round;
+    stroke-dasharray:1200;stroke-dashoffset:1200;
+    animation:draw 2.4s ease forwards .3s;
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media (prefers-reduced-motion: reduce){.loop path{stroke-dashoffset:0}}
+  .hero h1{font-size:clamp(38px,6vw,64px);max-width:760px;margin:0 auto 22px}
+  .hero h1 em{font-style:italic;color:var(--gold-deep)}
+  .hero p{max-width:580px;margin:0 auto 34px;font-size:19px;color:var(--ink-soft)}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-facts{
+    margin:64px auto 0;max-width:820px;display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line);
+  }
+  .fact{padding:26px 12px 0}
+  .fact strong{font-family:'Fraunces',serif;font-size:30px;display:block;color:var(--ink)}
+  .fact span{font-size:14px;color:var(--ink-soft)}
+  @media(max-width:640px){.hero{padding:56px 0 48px}.hero-facts{grid-template-columns:1fr;gap:8px}.fact{padding-top:18px}}
+
+  /* ---------- Sections ---------- */
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  @media(max-width:640px){section{padding:56px 0}}
+  .section-head{max-width:640px;margin-bottom:44px}
+  .section-head h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
+  .section-head p{color:var(--ink-soft);font-size:18px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:start}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+  .about-grid p+p{margin-top:16px}
+  .promise{background:var(--gold-tint);border-radius:var(--radius);padding:30px}
+  .promise h3{font-size:20px;margin-bottom:14px}
+  .promise ul{list-style:none}
+  .promise li{padding:9px 0 9px 30px;position:relative;border-bottom:1px solid rgba(156,85,96,.18)}
+  .promise li:last-child{border-bottom:none}
+  .promise li::before{content:"";position:absolute;left:0;top:16px;width:16px;height:16px;border-radius:50%;
+    background:var(--gold);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 12.2 2.8 8.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 12.2 2.8 8.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z'/%3E%3C/svg%3E") center/contain no-repeat}
+
+  /* Eligibility */
+  .elig{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:860px}
+  @media(max-width:680px){.elig{grid-template-columns:1fr}}
+  .elig-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .elig-card .dot{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--gold-tint);
+    display:grid;place-items:center;color:var(--gold-deep);font-weight:700;font-size:15px;
+  }
+  .elig-card h3{font-family:'Atkinson Hyperlegible',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .elig-card p{font-size:15px;color:var(--ink-soft)}
+  .elig-note{margin-top:22px;font-size:15px;color:var(--ink-soft);max-width:720px}
+
+  /* Timeline */
+  .timeline{max-width:760px;list-style:none}
+  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .tl-item:last-child{border-bottom:none}
+  .tl-date{font-family:'Fraunces',serif;font-size:19px;color:var(--gold-deep);font-weight:600}
+  .tl-item h3{font-family:'Atkinson Hyperlegible',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tl-item p{color:var(--ink-soft);font-size:15px}
+  @media(max-width:560px){.tl-item{grid-template-columns:1fr;gap:4px}}
+
+  /* Steps */
+  .steps{counter-reset:step;max-width:760px}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .step:last-of-type{border-bottom:none}
+  .step-num{
+    counter-increment:step;width:52px;height:52px;border-radius:50%;
+    border:2px solid var(--gold);color:var(--gold-deep);
+    display:grid;place-items:center;font-family:'Fraunces',serif;font-size:22px;font-weight:600;
+  }
+  .step-num::before{content:counter(step)}
+  .step h3{font-size:20px;margin-bottom:6px}
+  .step p{color:var(--ink-soft)}
+
+  /* Rubric */
+  .rubric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px}
+  @media(max-width:820px){.rubric{grid-template-columns:1fr}}
+  .rubric-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .rubric-card .pts{font-family:'Fraunces',serif;font-size:15px;color:var(--gold-deep);font-weight:600;letter-spacing:.02em;margin-bottom:10px}
+  .rubric-card h3{font-size:20px;margin-bottom:10px}
+  .rubric-card p{font-size:15px;color:var(--ink-soft)}
+  .rubric-rules{margin-top:34px;background:var(--gold-tint);border-radius:var(--radius);padding:28px;max-width:1000px}
+  .rubric-rules h3{font-size:19px;margin-bottom:12px}
+  .rubric-rules ul{list-style:none}
+  .rubric-rules li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:#4a3035}
+  .rubric-rules li::before{content:"—";position:absolute;left:0;color:var(--gold-deep);font-weight:700}
+
+  /* Form */
+  .apply-panel{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:40px;max-width:760px;margin-top:48px;
+  }
+  .apply-panel h3{font-size:24px;margin-bottom:6px}
+  .apply-panel>p{color:var(--ink-soft);margin-bottom:28px;font-size:15px}
+  .field{margin-bottom:22px}
+  .field label{display:block;font-weight:700;font-size:15px;margin-bottom:7px}
+  .field .hint{font-weight:400;color:var(--ink-soft);font-size:14px;display:block;margin-top:2px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 14px;border:1.5px solid #D6C3C6;border-radius:10px;
+    font-family:inherit;font-size:16px;background:var(--paper);color:var(--ink);
+  }
+  .field textarea{min-height:170px;resize:vertical}
+  .field .err{display:none;color:#9C3A1E;font-size:14px;font-weight:700;margin-top:6px}
+  .field.invalid .err{display:block}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#9C3A1E}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr}.apply-panel{padding:26px 20px}}
+  .form-note{font-size:14px;color:var(--ink-soft);margin-top:14px}
+  .hp-field{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .sent-panel{display:none;margin-top:22px;background:var(--gold-tint);border-radius:10px;padding:22px}
+  .sent-panel.show{display:block}
+  .sent-panel h4{font-family:'Fraunces',serif;font-size:19px;margin-bottom:8px}
+  .sent-panel p{font-size:15px;color:#4a3035;margin-bottom:12px}
+  .sent-panel textarea{width:100%;min-height:120px;font-family:inherit;font-size:14px;padding:12px;border:1.5px solid rgba(156,85,96,.35);border-radius:8px;background:#fff}
+  .copy-btn{margin-top:10px}
+
+  /* Donate */
+  .donate{background:var(--ink);color:var(--paper);border-top:none}
+  .donate .eyebrow{color:var(--gold)}
+  .donate .section-head p{color:#D6C8CC}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px}
+  @media(max-width:680px){.tiers{grid-template-columns:1fr}}
+  .tier{
+    background:#3E2C33;border:1px solid #52424A;border-radius:var(--radius);
+    padding:28px;text-align:left;cursor:pointer;color:var(--paper);font-family:inherit;
+    transition:border-color .15s ease;
+  }
+  .tier:hover{border-color:var(--gold)}
+  .tier strong{font-family:'Fraunces',serif;font-size:30px;display:block;color:var(--gold);margin-bottom:6px}
+  .tier span{font-size:15px;color:#D6C8CC}
+  .donate-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .donate-fine{margin-top:18px;font-size:14px;color:#B09FA7;max-width:720px}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--line);max-width:760px}
+  details summary{
+    cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-family:'Fraunces',serif;font-size:24px;color:var(--gold-deep);flex-shrink:0}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 0 20px;color:var(--ink-soft);max-width:640px}
+
+  /* Fine print */
+  .fine{border-top:1px solid var(--line);padding:56px 0}
+  .fine-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;max-width:1000px}
+  @media(max-width:720px){.fine-grid{grid-template-columns:1fr}}
+  .fine h3{font-size:20px;margin-bottom:12px}
+  .fine p{font-size:15px;color:var(--ink-soft)}
+  .fine p+p{margin-top:10px}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:48px 0 40px}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .foot p{font-size:15px;color:var(--ink-soft);max-width:420px}
+  .foot .brand{margin-bottom:10px}
+  .foot ul{list-style:none}
+  .foot li{margin-bottom:8px}
+  .foot a{font-size:15px}
+  .foot-legal{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#top">Skip to main content</a>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Rose Kelley Scholarship home">
+      <svg width="34" height="20" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      Rose Kelley Scholarship
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#apply">Apply</a></li>
+      <li><a href="#rubric">How we score</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li class="keep"><a class="btn gold" href="#donate">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero wrap">
+    <svg class="loop" width="140" height="70" viewBox="0 0 136 68" aria-hidden="true">
+      <path d="M34 10 C 54 10, 82 58, 102 58 C 120 58, 126 44, 126 34 C 126 24, 120 10, 102 10 C 82 10, 54 58, 34 58 C 16 58, 10 44, 10 34 C 10 24, 16 10, 34 10 Z"/>
+    </svg>
+    <h1>College costs shouldn't decide <em>whose mind</em> gets a chance.</h1>
+    <p>The Rose Kelley Scholarship awards $2,500 to an autistic student pursuing college, trade school, or a certificate program — through an application designed to be clear, calm, and fair. Applications are open now.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#apply">Start your application</a>
+      <a class="btn ghost" href="#donate">Support a student</a>
+    </div>
+    <div class="hero-facts" role="list">
+      <div class="fact" role="listitem"><strong>$2,500</strong><span>awarded this cycle</span></div>
+      <div class="fact" role="listitem"><strong>Oct 15</strong><span>application deadline, 2026</span></div>
+      <div class="fact" role="listitem"><strong>100%</strong><span>of every dollar we receive goes to students</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <p class="eyebrow">Why this exists</p>
+          <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:18px">Built by the autism community, for autistic students.</h2>
+          <p>Autistic students are talented, driven, and full of ideas — and they graduate college at lower rates than their peers, often because of barriers that have nothing to do with ability: cost, inaccessible processes, and systems that weren't designed with them in mind.</p>
+          <p>The Rose Kelley Scholarship exists to remove one of those barriers. We fund autistic students directly, and we designed every part of this process — from this website to the application itself — to be sensory-friendly, predictable, and written in plain language.</p>
+          <p>The scholarship carries Rose Kelley's name — <a href="#rose">meet her below</a>. Our symbol comes from the neurodiversity movement: an infinite spectrum of minds, each with its own path forward.</p>
+        </div>
+        <aside class="promise" aria-label="Our commitments">
+          <h3>How we do things</h3>
+          <ul>
+            <li>Plain language. No trick questions, no jargon.</li>
+            <li>No puzzle-piece imagery — ever.</li>
+            <li>Alternative formats available for every step.</li>
+            <li>Applications scored by two readers with a public rubric.</li>
+            <li>Every applicant gets a decision by a stated date.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROSE KELLEY -->
+  <section id="rose">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <p class="eyebrow">The person behind the name</p>
+          <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:18px">Meet Rose Kelley.</h2>
+          <p>Rose Kelley is a Board Certified Behavior Analyst (BCBA) whose work is devoted to helping children. Day to day, that means meeting each child where they are, paying attention to how they communicate, and helping them build the skills to go wherever they want to go next.</p>
+          <p>Ask Rose what she hopes for the children she works with, and the answer isn't a milestone or a score — it's a future. A classroom that fits. A trade they love. A life on their own terms. Too often, the road to that future gets blocked by things that have nothing to do with a child's potential.</p>
+          <p>This scholarship carries her name because it funds exactly what she works toward: one more student, one more open path.</p>
+        </div>
+        <aside class="promise" aria-label="The beliefs behind this scholarship">
+          <h3>The beliefs behind this scholarship</h3>
+          <ul>
+            <li>Every child can learn and grow — the job is finding how.</li>
+            <li>Potential is everywhere; opportunity isn't. We fund opportunity.</li>
+            <li>How a student communicates should never limit where they can go.</li>
+            <li>Helping one child, concretely, is always worth doing.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELIGIBILITY -->
+  <section id="eligibility">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Eligibility</p>
+        <h2>Can I apply?</h2>
+        <p>If all four of these are true for you, yes — we want your application.</p>
+      </div>
+      <div class="elig">
+        <div class="elig-card"><div class="dot" aria-hidden="true">1</div><div><h3>You identify as autistic</h3><p>Self-identification is accepted. A formal diagnosis is not required — we know diagnosis access is unequal.</p></div></div>
+        <div class="elig-card"><div class="dot" aria-hidden="true">2</div><div><h3>You're pursuing education after high school</h3><p>Four-year college, community college, trade school, or a certificate program — all count equally.</p></div></div>
+        <div class="elig-card"><div class="dot" aria-hidden="true">3</div><div><h3>You'll be enrolled during the 2026–27 year</h3><p>Incoming and current students are both welcome. Part-time enrollment is fine.</p></div></div>
+        <div class="elig-card"><div class="dot" aria-hidden="true">4</div><div><h3>You live in the United States</h3><p>Any state or territory. Citizenship is not required.</p></div></div>
+      </div>
+      <p class="elig-note">GPA is <strong>not</strong> a requirement. Grades don't capture everything, and this scholarship isn't only for straight-A students. One more rule for fairness: family members and close friends of the people running the Rose Kelley Scholarship can't apply.</p>
+    </div>
+  </section>
+
+  <!-- DATES -->
+  <section id="dates">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Key dates</p>
+        <h2>The full timeline, up front.</h2>
+        <p>No moving deadlines, no surprises. If anything ever changes, we'll email every applicant directly.</p>
+      </div>
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-date">Now</span><div><h3>Applications are open</h3><p>Apply any time before the deadline. Applying early doesn't earn extra points — take the time you need.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>11:59 PM Pacific Time. If something outside your control gets in the way, email us — we're humans, not a portal.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Within 2 days</span><div><h3>We confirm we received it</h3><p>Every application gets a confirmation email. If anything is missing, we'll tell you exactly what and give you time to fix it.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Dec 1, 2026</span><div><h3>Every applicant hears back</h3><p>Not just the recipient — everyone gets an answer by email on or before this date.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Jan 2027</span><div><h3>Award is paid</h3><p>In time for the spring term, sent to your school or to you — whichever works better for your situation.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section id="apply">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How to apply</p>
+        <h2>One form. One question.</h2>
+        <p>Most people finish in under an hour. Fields marked with * are required.</p>
+      </div>
+
+      <div class="apply-panel">
+        <h3>Application form</h3>
+        <p>Press Submit and your application comes straight to us — no account, no portal, and you'll see a confirmation right here on the page. Prefer email instead? Send the same answers to <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a>, or request another format (large print, plain text, phone call). Every route is scored identically.</p>
+        <div class="form-row">
+          <div class="field" id="fw-name">
+            <label for="f-name">Full name *</label>
+            <input id="f-name" type="text" autocomplete="name" maxlength="200">
+            <span class="err">Please enter your name.</span>
+          </div>
+          <div class="field" id="fw-email">
+            <label for="f-email">Email *</label>
+            <input id="f-email" type="email" autocomplete="email" maxlength="320">
+            <span class="err">Please enter an email address so we can reply.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" id="fw-school">
+            <label for="f-school">School or program *<span class="hint">The one you attend or plan to attend</span></label>
+            <input id="f-school" type="text" maxlength="300">
+            <span class="err">Please tell us your school or program.</span>
+          </div>
+          <div class="field" id="fw-year">
+            <label for="f-year">Where you are *</label>
+            <select id="f-year">
+              <option value="">Choose one</option>
+              <option>Graduating high school</option>
+              <option>Currently in college</option>
+              <option>Trade school / certificate program</option>
+              <option>Returning to school</option>
+            </select>
+            <span class="err">Please choose the option closest to your situation.</span>
+          </div>
+        </div>
+        <div class="field" id="fw-essay">
+          <label for="f-essay">Tell us about a path you want to take. *<span class="hint">300–500 words. What do you want to study or build, and why? There is no "right" answer — we want to hear you. Prefer video or audio? Paste a link here instead (it's scored with the same rubric).</span></label>
+          <textarea id="f-essay" maxlength="20000"></textarea>
+          <span class="err">This is the part we most want to read — please write something, or paste a video/audio link.</span>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="f-website">Leave this field empty</label>
+          <input id="f-website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn gold" type="button" id="submit-btn">Submit application</button>
+
+        <div class="sent-panel" id="success-panel" role="status">
+          <h4>Application received. You're done.</h4>
+          <p>Thank you — your application is safely in. We'll email a confirmation within two days, and every applicant hears back by December 1, 2026. A copy of what you sent is below if you'd like to keep it.</p>
+          <textarea id="success-copy" readonly aria-label="A copy of your submitted application"></textarea>
+          <button class="btn ghost copy-btn" type="button" id="copy-success-btn">Copy my application</button>
+        </div>
+
+        <div class="sent-panel" id="fallback-panel" role="alert">
+          <h4>That didn't go through — but you have two easy backups.</h4>
+          <p>Something interrupted the submission (often a network hiccup or a strict browser extension). Nothing was lost: press the button below to open an email draft with your answers filled in, or copy the text and email it to <strong>rosekelleyscholarship@gmail.com</strong> yourself. Every route counts the same.</p>
+          <textarea id="fallback-copy" readonly aria-label="Your application text, ready to copy"></textarea>
+          <div>
+            <button class="btn gold copy-btn" type="button" id="mailto-btn">Open email draft</button>
+            <button class="btn ghost copy-btn" type="button" id="copy-fallback-btn">Copy application text</button>
+          </div>
+        </div>
+
+        <p class="form-note">We only use your information to review your application. We never sell or share it, and we delete application materials after the cycle ends. Details in <a href="#fine">the fine print</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUBRIC -->
+  <section id="rubric">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How we score</p>
+        <h2>The rubric, published.</h2>
+        <p>Two readers score every application independently, using exactly this. Highest combined score receives the award.</p>
+      </div>
+      <div class="rubric">
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>A path of your own</h3>
+          <p>How clearly you describe what you want to study, build, or become. Big or small, conventional or not — clarity and genuine interest are what score, not ambition for its own sake.</p>
+        </div>
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>Steps already taken</h3>
+          <p>Anything you've done to move toward that path: classes, projects, jobs, self-teaching, caregiving, advocacy. Effort counts wherever it happened — not just in school.</p>
+        </div>
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>What $2,500 changes</h3>
+          <p>How the award concretely helps: tuition, a laptop, transportation, housing, fewer work hours. Specific and honest beats dramatic.</p>
+        </div>
+      </div>
+      <div class="rubric-rules">
+        <h3>Fairness rules</h3>
+        <ul>
+          <li>Writing style is not scored. Spelling, grammar, and "polish" earn zero points — substance does.</li>
+          <li>Video and audio responses are scored with the identical rubric.</li>
+          <li>A reader with any personal connection to an applicant steps out, and a replacement reader scores instead.</li>
+          <li>Ties are broken by the "What $2,500 changes" score, then by a joint re-read.</li>
+          <li>Scores are final, but any applicant can ask for their own scores and we'll share them.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE -->
+  <section id="donate" class="donate">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Donate</p>
+        <h2 style="color:var(--paper)">Fund the next recipient.</h2>
+        <p>This scholarship is personally run and personally funded. Every dollar we receive goes straight into the award — we cover all costs of running it ourselves.</p>
+      </div>
+      <div class="tiers">
+        <button class="tier" type="button" onclick="donate(25)"><strong>$25</strong><span>Covers application accessibility supports — alternative formats, captioning, and more.</span></button>
+        <button class="tier" type="button" onclick="donate(100)"><strong>$100</strong><span>Puts real money toward books and supplies for a student's first semester.</span></button>
+        <button class="tier" type="button" onclick="donate(2500)"><strong>$2,500</strong><span>Funds one full scholarship. We'll name the award after you or someone you love, if you'd like.</span></button>
+      </div>
+      <div class="donate-actions">
+        <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
+        <a class="btn ghost" style="color:var(--paper);border-color:var(--paper)" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
+      </div>
+      <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep a running ledger of every dollar in and out, and we'll email you when your dollars are awarded.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions, answered plainly.</h2>
+      </div>
+      <details>
+        <summary>Do I need a formal autism diagnosis to apply?</summary>
+        <p>No. Self-identification is accepted. Formal diagnosis is expensive and harder to access for many people — especially women, people of color, and adults — and we won't make it a gate.</p>
+      </details>
+      <details>
+        <summary>Does the money go to me or to my school?</summary>
+        <p>Your choice. We can send funds to your school's financial aid office or directly to you. One note: under IRS rules, scholarship money used for tuition, required fees, and books is tax-free to you; amounts used for other things like housing may count as taxable income. We'll walk through the options with the recipient.</p>
+      </details>
+      <details>
+        <summary>Will applying affect my financial aid?</summary>
+        <p>Outside scholarships can affect aid packages at some schools. We recommend checking with your financial aid office, and we're happy to structure the payment in the way that helps you most.</p>
+      </details>
+      <details>
+        <summary>Who reviews the applications?</summary>
+        <p>A small volunteer panel that includes autistic adults. Every application is read by at least two people using the same written rubric — the one published on this page.</p>
+      </details>
+      <details>
+        <summary>Is this a registered nonprofit?</summary>
+        <p>Not yet — the Rose Kelley Scholarship is personally run and personally funded, in its first year. That means donations aren't tax-deductible right now, but it also means zero overhead: every dollar we receive goes to a student. If the scholarship grows, formalizing as a nonprofit is the plan.</p>
+      </details>
+      <details>
+        <summary>What happens to my application after the cycle?</summary>
+        <p>We keep applications only as long as needed to run the cycle, then delete them. We never sell or share your information, and we never use applications for marketing or testimonials without your written permission.</p>
+      </details>
+      <details>
+        <summary>Can I apply again if I don't receive it?</summary>
+        <p>Yes — please do. You can apply every year you remain eligible.</p>
+      </details>
+      <details>
+        <summary>I need an accommodation to apply. What do I do?</summary>
+        <p>Email <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a> and tell us what would help — a different format, extra time due to circumstances, a phone or video call instead of writing. Asking for an accommodation never affects your score.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINE PRINT -->
+  <section class="fine" id="fine">
+    <div class="wrap">
+      <div class="fine-grid">
+        <div>
+          <h3>Accessibility statement</h3>
+          <p>This site is built to be sensory-friendly and readable: calm colors, no flashing or autoplaying content, motion disabled for anyone whose device requests reduced motion, visible keyboard focus, and body text set in Atkinson Hyperlegible, a typeface designed for maximum legibility.</p>
+          <p>If any part of this site or application is hard for you to use, that's a problem we want to fix — email <a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a> and we'll make it work for you.</p>
+        </div>
+        <div>
+          <h3>Privacy, in plain words</h3>
+          <p>Applications submitted through this form are stored in a private, encrypted database (Google Firebase) that only our review panel can access. Applications sent by email are read by the same panel. This site uses no analytics trackers, no ad pixels, and no marketing cookies.</p>
+          <p>We use your contact information only to run the scholarship: confirmations, decisions, and payment logistics. Materials are deleted after each cycle. We will never sell, share, or publish your information, and we'll never announce the recipient publicly without their written permission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top">
+          <svg width="34" height="20" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+          Rose Kelley Scholarship
+        </a>
+        <p>A scholarship for autistic students, designed with the community it serves. Rose gold and the infinity symbol are ours on purpose.</p>
+      </div>
+      <ul>
+        <li><a href="#eligibility">Eligibility</a></li>
+        <li><a href="#apply">Apply</a></li>
+        <li><a href="#rubric">How we score</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="mailto:rosekelleyscholarship@gmail.com">rosekelleyscholarship@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="foot-legal">© 2026 Rose Kelley Scholarship. A personally funded scholarship — not a registered nonprofit organization. Donations are personal gifts and are not tax-deductible. Award decisions are made using the published rubric on this page and are nondiscriminatory with respect to race, color, national origin, sex, religion, and disability.</p>
+  </div>
+</footer>
+
+<script type="module">
+  /* ============================================================
+     SETUP — two things to configure before launch:
+     1. FIREBASE_CONFIG: pasted from the Firebase console (or by
+        the deploy script). If left null, the form automatically
+        falls back to the email flow — the site still works.
+     2. CONTACT_EMAIL / DONATE_URL below.
+     ============================================================ */
+  const FIREBASE_CONFIG = null; /* @FIREBASE_CONFIG@ */
+
+  const CONTACT_EMAIL = "rosekelleyscholarship@gmail.com";
+
+  let db = null, addDoc = null, collectionRef = null, serverTimestamp = null;
+  if (FIREBASE_CONFIG) {
+    try {
+      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js");
+      const fs = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js");
+      const app = initializeApp(FIREBASE_CONFIG);
+      db = fs.getFirestore(app);
+      addDoc = fs.addDoc;
+      serverTimestamp = fs.serverTimestamp;
+      collectionRef = fs.collection(db, "applications");
+    } catch (e) {
+      // SDK failed to load (offline, blocked) — email fallback takes over.
+      db = null;
+    }
+  }
+
+  /* ---------- Application form ---------- */
+  const $ = (id) => document.getElementById(id);
+  const fieldVal = (id) => $(id).value.trim();
+  const mark = (id, bad) => $(id).classList.toggle("invalid", bad);
+
+  function buildBody(a) {
+    return "ROSE KELLEY SCHOLARSHIP APPLICATION\n" +
+      "--------------------------------------\n" +
+      "Name: " + a.name + "\n" +
+      "Email: " + a.email + "\n" +
+      "School / program: " + a.school + "\n" +
+      "Where I am: " + a.stage + "\n\n" +
+      "My path:\n" + a.essay + "\n";
+  }
+
+  function openMailto(a) {
+    window.location.href = "mailto:" + CONTACT_EMAIL +
+      "?subject=" + encodeURIComponent("Scholarship application — " + a.name) +
+      "&body=" + encodeURIComponent(buildBody(a));
+  }
+
+  function showPanel(id, copyId, a) {
+    $(copyId).value = buildBody(a);
+    const panel = $(id);
+    panel.classList.add("show");
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  let lastApp = null;
+
+  $("submit-btn").addEventListener("click", async function () {
+    const a = {
+      name: fieldVal("f-name"),
+      email: fieldVal("f-email"),
+      school: fieldVal("f-school"),
+      stage: fieldVal("f-year"),
+      essay: fieldVal("f-essay"),
+    };
+
+    let bad = false;
+    mark("fw-name", !a.name); bad = bad || !a.name;
+    const emailOk = /.+@.+\..+/.test(a.email);
+    mark("fw-email", !emailOk); bad = bad || !emailOk;
+    mark("fw-school", !a.school); bad = bad || !a.school;
+    mark("fw-year", !a.stage); bad = bad || !a.stage;
+    mark("fw-essay", !a.essay); bad = bad || !a.essay;
+    if (bad) {
+      const firstBad = document.querySelector(".field.invalid input, .field.invalid select, .field.invalid textarea");
+      if (firstBad) firstBad.focus();
+      return;
+    }
+
+    lastApp = a;
+    $("success-panel").classList.remove("show");
+    $("fallback-panel").classList.remove("show");
+
+    // Honeypot: real people never fill this hidden field.
+    if (fieldVal("f-website")) {
+      showPanel("success-panel", "success-copy", a);
+      return;
+    }
+
+    if (db) {
+      const btn = this;
+      btn.disabled = true;
+      btn.textContent = "Submitting…";
+      try {
+        await addDoc(collectionRef, { ...a, submittedAt: serverTimestamp() });
+        showPanel("success-panel", "success-copy", a);
+        btn.textContent = "Submitted ✓";
+      } catch (e) {
+        showPanel("fallback-panel", "fallback-copy", a);
+        btn.disabled = false;
+        btn.textContent = "Submit application";
+      }
+    } else {
+      // No database configured/reachable: email flow, with copy panel as backup.
+      showPanel("fallback-panel", "fallback-copy", a);
+      openMailto(a);
+    }
+  });
+
+  $("mailto-btn").addEventListener("click", () => { if (lastApp) openMailto(lastApp); });
+
+  function wireCopy(btnId, taId) {
+    $(btnId).addEventListener("click", async function () {
+      const ta = $(taId);
+      ta.select();
+      try {
+        await navigator.clipboard.writeText(ta.value);
+        this.textContent = "Copied ✓";
+      } catch (e) {
+        document.execCommand("copy");
+        this.textContent = "Copied ✓";
+      }
+    });
+  }
+  wireCopy("copy-success-btn", "success-copy");
+  wireCopy("copy-fallback-btn", "fallback-copy");
+
+  /* ---------- Donations ---------- */
+  const DONATE_URL = "https://www.gofundme.com/f/empower-autistic-students-with-rose-kelley-scholarship";
+  window.donate = function (amount) {
+    if (DONATE_URL) {
+      window.open(DONATE_URL, "_blank", "noopener");
+    } else {
+      const subj = amount > 0 ? "I'd like to donate $" + amount : "I'd like to donate";
+      window.location.href = "mailto:" + CONTACT_EMAIL +
+        "?subject=" + encodeURIComponent(subj) +
+        "&body=" + encodeURIComponent("Hi! I'd like to support the Rose Kelley Scholarship. What's the best way to send a donation?");
+    }
+  };
+</script>
+
+</body>
+</html>

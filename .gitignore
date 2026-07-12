@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Firebase CLI artifacts
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+pubsub-debug.log*
+database-debug.log*
+
+# Node (if dependencies are ever added)
+node_modules/
+
+# Local env / secrets (never commit credentials)
+.env
+.env.*
+*-service-account*.json
+
+# Browser-automation / test output
+.playwright-mcp/
+*.jpeg
