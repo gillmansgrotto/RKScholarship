@@ -116,9 +116,10 @@ for i in range(MAX_ROWS):
     app_row = 2 + i
     for j, reader in enumerate(("Reader 1", "Reader 2")):
         r = 2 + i * 2 + j
-        ws.cell(row=r, column=1, value=f'=IF(Applications!A{app_row}="","",Applications!A{app_row})')
-        ws.cell(row=r, column=2, value=f'=IF(Applications!A{app_row}="","",Applications!C{app_row})')
-        ws.cell(row=r, column=3, value=f'=IF(Applications!A{app_row}="","","{reader}")')
+        blank = f'OR(Applications!A{app_row}="",Applications!A{app_row}="ID")'
+        ws.cell(row=r, column=1, value=f'=IF({blank},"",Applications!A{app_row})')
+        ws.cell(row=r, column=2, value=f'=IF({blank},"",Applications!C{app_row})')
+        ws.cell(row=r, column=3, value=f'=IF({blank},"","{reader}")')
         ws.cell(row=r, column=7, value=f'=IF(COUNT(D{r}:F{r})=0,"",SUM(D{r}:F{r}))')
         for c in range(1, 9):
             ws.cell(row=r, column=c).border = border
@@ -148,13 +149,14 @@ for i in range(MAX_ROWS):
     app_row = 2 + i
     r1 = 2 + i * 2       # Reader 1 row in Scoring
     r2 = 3 + i * 2       # Reader 2 row in Scoring
-    ws.cell(row=r, column=1, value=f'=IF(Applications!A{app_row}="","",Applications!A{app_row})')
-    ws.cell(row=r, column=2, value=f'=IF(Applications!A{app_row}="","",Applications!C{app_row})')
-    ws.cell(row=r, column=3, value=f'=IF(Applications!A{app_row}="","",Scoring!G{r1})')
-    ws.cell(row=r, column=4, value=f'=IF(Applications!A{app_row}="","",Scoring!G{r2})')
-    ws.cell(row=r, column=5, value=f'=IF(Applications!A{app_row}="","",IF(COUNT(C{r}:D{r})=0,"",SUM(C{r}:D{r})))')
-    ws.cell(row=r, column=6, value=f'=IF(Applications!A{app_row}="","",SUM(Scoring!F{r1},Scoring!F{r2}))')
-    ws.cell(row=r, column=7, value=f'=IF(OR(Applications!A{app_row}="",E{r}=""),"",RANK(E{r},$E$2:$E${MAX_ROWS+1}))')
+    blank = f'OR(Applications!A{app_row}="",Applications!A{app_row}="ID")'
+    ws.cell(row=r, column=1, value=f'=IF({blank},"",Applications!A{app_row})')
+    ws.cell(row=r, column=2, value=f'=IF({blank},"",Applications!C{app_row})')
+    ws.cell(row=r, column=3, value=f'=IF({blank},"",Scoring!G{r1})')
+    ws.cell(row=r, column=4, value=f'=IF({blank},"",Scoring!G{r2})')
+    ws.cell(row=r, column=5, value=f'=IF({blank},"",IF(COUNT(C{r}:D{r})=0,"",SUM(C{r}:D{r})))')
+    ws.cell(row=r, column=6, value=f'=IF({blank},"",SUM(Scoring!F{r1},Scoring!F{r2}))')
+    ws.cell(row=r, column=7, value=f'=IF(OR({blank},E{r}=""),"",RANK(E{r},$E$2:$E${MAX_ROWS+1}))')
     for c in range(1, 8):
         ws.cell(row=r, column=c).border = border
 
