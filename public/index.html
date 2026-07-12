@@ -266,6 +266,19 @@
   .fine p{font-size:15px;color:var(--ink-soft)}
   .fine p+p{margin-top:10px}
 
+  /* Quote band */
+  .quote-band{background:var(--gold-tint);text-align:center}
+  .quote-band blockquote{max-width:760px;margin:0 auto}
+  .quote-band blockquote p{
+    font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;
+    font-size:clamp(22px,3.4vw,31px);line-height:1.45;color:var(--ink);
+  }
+  .quote-band cite{
+    display:block;margin-top:26px;font-style:normal;font-weight:700;
+    font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);
+  }
+  .quote-band .loop-small{margin:0 auto 28px;display:block}
+
   /* Footer */
   footer{background:var(--ink);color:#D6C8CC;padding:64px 0 44px}
   .foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
@@ -599,6 +612,17 @@
           <p>We use your contact information only to run the scholarship: confirmations, decisions, and payment logistics. Materials are deleted after each cycle. We will never sell, share, or publish your information, and we'll never announce the recipient publicly without their written permission.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- A NOTE FROM ROSE -->
+  <section class="quote-band" aria-label="A note from Rose Kelley">
+    <div class="wrap">
+      <svg class="loop-small" width="68" height="34" viewBox="0 0 68 34" aria-hidden="true"><path d="M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z" stroke="#B76E79" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      <blockquote>
+        <p>&ldquo;This has always been a life dream of mine, and I am so proud to be able to share this with you. We are so proud of all of you and believe you all will have a wonderful future!&rdquo;</p>
+        <cite>&mdash; Rose Kelley</cite>
+      </blockquote>
     </div>
   </section>
 
