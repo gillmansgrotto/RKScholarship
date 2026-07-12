@@ -41,6 +41,28 @@ firebase deploy --only firestore:rules      # rules changes
 Firebase console → Firestore Database → `applications` collection.
 Each document has: `name`, `email`, `school`, `stage`, `essay`, `submittedAt`.
 
+## Confirmation emails (apps-script/)
+
+A Google Apps Script polls Firestore every 10 minutes; each new application
+gets (a) a confirmation email to the applicant and (b) a notification email
+to rosekelleyscholarship@gmail.com, then the document is stamped with
+`confirmationSentAt` so it's never emailed twice. Send failures are stamped
+`confirmationError` and you get an alert to follow up manually.
+
+One-time install (~3 minutes), signed in as rosekelleyscholarship@gmail.com:
+
+1. Go to https://script.google.com → **New project**.
+2. Name it "Scholarship confirmations".
+3. Replace the editor's default contents with `apps-script/Code.gs`.
+4. Click the gear (Project Settings) → check **Show "appsscript.json"** →
+   back in the editor, open `appsscript.json` and replace its contents with
+   `apps-script/appsscript.json`.
+5. Select the `setup` function in the toolbar dropdown → **Run** → approve
+   the authorization prompts (it will warn the app is unverified — click
+   Advanced → Go to project — this is your own script on your own account).
+
+Done: `setup()` installs the 10-minute timer and processes anything waiting.
+
 ## Before launch — manual checklist
 
 - [ ] `rosekelleyscholarship@gmail.com` must be a real, monitored inbox (it's the
@@ -51,6 +73,5 @@ Each document has: `name`, `email`, `school`, `stage`, `essay`, `submittedAt`.
       resolve that in the GoFundMe dashboard before launch.
 - [ ] Optional: connect a custom domain (e.g. rosekelleyscholarship.org) in
       Firebase console → Hosting → Add custom domain.
-- [ ] The timeline promises a confirmation email within 2 days of each
-      submission — check the Firestore console (or set up an email alert)
-      at least every other day during the cycle.
+- [ ] Install the confirmation-email automation (see "Confirmation emails"
+      above) so the site's 2-day confirmation promise keeps itself.
