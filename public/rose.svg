@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Rose Kelley">
+  <circle cx="200" cy="200" r="200" fill="#F9ECEA"/>
+  <text x="200" y="215" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="128" font-weight="600" fill="#9C5560" letter-spacing="4">RK</text>
+  <path d="M166 282 C 176 282, 190 306, 200 306 C 209 306, 212 299, 212 294 C 212 289, 209 282, 200 282 C 190 282, 176 306, 166 306 C 157 306, 154 299, 154 294 C 154 289, 157 282, 166 282 Z"
+        transform="translate(17 0)" stroke="#B76E79" stroke-width="7" fill="none" stroke-linecap="round"/>
+</svg>

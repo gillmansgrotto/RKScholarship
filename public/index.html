@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rose Kelley Scholarship — a $2,500 award for autistic students</title>
+<title>Rose Kelley Scholarship — a $1,000 award for autistic students</title>
 <meta name="description" content="A personally funded scholarship for autistic students. Plain-language application, published rubric, and every dollar received goes to students. Deadline: October 15, 2026.">
 <meta property="og:title" content="Rose Kelley Scholarship">
-<meta property="og:description" content="A $2,500 scholarship for autistic students. Clear eligibility, a plain-language application, decisions for every applicant by December 1.">
+<meta property="og:description" content="A $1,000 scholarship for autistic students. Clear eligibility, a plain-language application, decisions for every applicant by December 1.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://rosekelleyscholarship-e0068.web.app/">
-<meta property="og:image" content="https://rosekelleyscholarship-e0068.web.app/og.png">
+<meta property="og:url" content="https://rosekelleyscholarship.org/">
+<meta property="og:image" content="https://rosekelleyscholarship.org/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rosekelleyscholarship.org/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 34'%3E%3Cpath d='M17 5 C 27 5, 41 29, 51 29 C 60 29, 63 22, 63 17 C 63 12, 60 5, 51 5 C 41 5, 27 29, 17 29 C 8 29, 5 22, 5 17 C 5 12, 8 5, 17 5 Z' stroke='%23B76E79' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,6 +128,14 @@
     background:var(--gold);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 12.2 2.8 8.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 12.2 2.8 8.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z'/%3E%3C/svg%3E") center/contain no-repeat}
 
+  /* Rose portrait */
+  .portrait{
+    width:200px;height:200px;border-radius:50%;object-fit:cover;
+    border:5px solid var(--gold);display:block;margin:0 auto 28px;
+    background:var(--gold-tint);
+  }
+  @media(max-width:820px){.portrait{width:160px;height:160px}}
+
   /* Eligibility */
   .elig{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:860px}
   @media(max-width:680px){.elig{grid-template-columns:1fr}}
@@ -143,9 +152,17 @@
   .elig-note{margin-top:22px;font-size:15px;color:var(--ink-soft);max-width:720px}
 
   /* Timeline */
-  .timeline{max-width:760px;list-style:none}
-  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line)}
-  .tl-item:last-child{border-bottom:none}
+  .timeline{max-width:760px;list-style:none;position:relative;padding-left:40px}
+  .timeline::before{
+    content:"";position:absolute;left:9px;top:26px;bottom:34px;width:2px;
+    background:linear-gradient(to bottom,var(--gold),#E5C6CB);border-radius:2px;
+  }
+  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:22px 0;position:relative}
+  .tl-item::before{
+    content:"";position:absolute;left:-38px;top:30px;width:14px;height:14px;border-radius:50%;
+    background:var(--paper);border:3px solid var(--gold);
+  }
+  .tl-item:first-child::before{background:var(--gold)}
   .tl-date{font-family:'Fraunces',serif;font-size:19px;color:var(--gold-deep);font-weight:600}
   .tl-item h3{font-family:'Atkinson Hyperlegible',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
   .tl-item p{color:var(--ink-soft);font-size:15px}
@@ -196,6 +213,8 @@
   .field.invalid .err{display:block}
   .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#9C3A1E}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .form-row .field{display:flex;flex-direction:column}
+  .form-row .field input,.form-row .field select{margin-top:auto}
   @media(max-width:600px){.form-row{grid-template-columns:1fr}.apply-panel{padding:26px 20px}}
   .form-note{font-size:14px;color:var(--ink-soft);margin-top:14px}
   .hp-field{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
@@ -243,14 +262,15 @@
   .fine p+p{margin-top:10px}
 
   /* Footer */
-  footer{border-top:1px solid var(--line);padding:48px 0 40px}
-  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
-  .foot p{font-size:15px;color:var(--ink-soft);max-width:420px}
-  .foot .brand{margin-bottom:10px}
+  footer{background:var(--ink);color:#D6C8CC;padding:64px 0 44px}
+  .foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  .foot p{font-size:15px;color:#D6C8CC;max-width:420px}
+  .foot .brand{margin-bottom:12px;color:var(--paper)}
   .foot ul{list-style:none}
-  .foot li{margin-bottom:8px}
-  .foot a{font-size:15px}
-  .foot-legal{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+  .foot li{margin-bottom:10px}
+  .foot a{font-size:15px;color:#DCA8B0;text-decoration-color:rgba(220,168,176,.4);text-underline-offset:3px}
+  .foot a:hover{color:#fff}
+  .foot-legal{margin-top:40px;padding-top:22px;border-top:1px solid #52424A;font-size:13px;color:#B09FA7}
 </style>
 </head>
 <body>
@@ -266,8 +286,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#eligibility">Eligibility</a></li>
       <li><a href="#dates">Dates</a></li>
-      <li><a href="#apply">Apply</a></li>
       <li><a href="#rubric">How we score</a></li>
+      <li><a href="#apply">Apply</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li class="keep"><a class="btn gold" href="#donate">Donate</a></li>
     </ul>
@@ -282,13 +302,13 @@
       <path d="M34 10 C 54 10, 82 58, 102 58 C 120 58, 126 44, 126 34 C 126 24, 120 10, 102 10 C 82 10, 54 58, 34 58 C 16 58, 10 44, 10 34 C 10 24, 16 10, 34 10 Z"/>
     </svg>
     <h1>College costs shouldn't decide <em>whose mind</em> gets a chance.</h1>
-    <p>The Rose Kelley Scholarship awards $2,500 to an autistic student pursuing college, trade school, or a certificate program — through an application designed to be clear, calm, and fair. Applications are open now.</p>
+    <p>The Rose Kelley Scholarship awards $1,000 to an autistic student pursuing college, trade school, or a certificate program — through an application designed to be clear, calm, and fair. Applications are open now.</p>
     <div class="hero-actions">
       <a class="btn" href="#apply">Start your application</a>
       <a class="btn ghost" href="#donate">Support a student</a>
     </div>
     <div class="hero-facts" role="list">
-      <div class="fact" role="listitem"><strong>$2,500</strong><span>awarded this cycle</span></div>
+      <div class="fact" role="listitem"><strong>$1,000</strong><span>awarded this cycle</span></div>
       <div class="fact" role="listitem"><strong>Oct 15</strong><span>application deadline, 2026</span></div>
       <div class="fact" role="listitem"><strong>100%</strong><span>of every dollar we receive goes to students</span></div>
     </div>
@@ -302,7 +322,7 @@
           <p class="eyebrow">Why this exists</p>
           <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:18px">Built by the autism community, for autistic students.</h2>
           <p>Autistic students are talented, driven, and full of ideas — and they graduate college at lower rates than their peers, often because of barriers that have nothing to do with ability: cost, inaccessible processes, and systems that weren't designed with them in mind.</p>
-          <p>The Rose Kelley Scholarship exists to remove one of those barriers. We fund autistic students directly, and we designed every part of this process — from this website to the application itself — to be sensory-friendly, predictable, and written in plain language.</p>
+          <p>The Rose Kel ley Scholarship exists to remove one of those barriers. We fund autistic students directly, and we designed every part of this process — from this website to the application itself — to be sensory-friendly, predictable, and written in plain language.</p>
           <p>The scholarship carries Rose Kelley's name — <a href="#rose">meet her below</a>. Our symbol comes from the neurodiversity movement: an infinite spectrum of minds, each with its own path forward.</p>
         </div>
         <aside class="promise" aria-label="Our commitments">
@@ -329,10 +349,10 @@
           <p>Rose Kelley is a Board Certified Behavior Analyst (BCBA) whose work is devoted to helping children. Day to day, that means meeting each child where they are, paying attention to how they communicate, and helping them build the skills to go wherever they want to go next.</p>
           <p>Ask Rose what she hopes for the children she works with, and the answer isn't a milestone or a score — it's a future. A classroom that fits. A trade they love. A life on their own terms. Too often, the road to that future gets blocked by things that have nothing to do with a child's potential.</p>
           <p>This scholarship carries her name because it funds exactly what she works toward: one more student, one more open path.</p>
-
         </div>
-        </div>
-        <aside class="promise" aria-label="The beliefs behind this scholarship">
+        <div>
+          <img class="portrait" src="rose.svg" alt="Rose Kelley" width="200" height="200">
+          <aside class="promise" aria-label="The beliefs behind this scholarship">
           <h3>The beliefs behind this scholarship</h3>
           <ul>
             <li>Every child can learn and grow — the job is finding how.</li>
@@ -340,7 +360,8 @@
             <li>How a student communicates should never limit where they can go.</li>
             <li>Helping one child, concretely, is always worth doing.</li>
           </ul>
-        </aside>
+          </aside>
+        </div>
       </div>
     </div>
   </section>
@@ -373,11 +394,49 @@
       </div>
       <ul class="timeline">
         <li class="tl-item"><span class="tl-date">Now</span><div><h3>Applications are open</h3><p>Apply any time before the deadline. Applying early doesn't earn extra points — take the time you need.</p></div></li>
-        <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>11:59 PM Pacific Time. If something outside your control gets in the way, email us — we're humans, not a portal.</p></div></li>
-        <li class="tl-item"><span class="tl-date">Within 2 days</span><div><h3>We confirm we received it</h3><p>Every application gets a confirmation email. If anything is missing, we'll tell you exactly what and give you time to fix it.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Oct 15, 2026</span><div><h3>Application deadline</h3><p>Submit any time up to 11:59 PM Pacific on this date. If something outside your control is in the way, email us before the deadline — we're humans, not a portal, and we'll work with you.</p></div></li>
+        <li class="tl-item"><span class="tl-date">Right away</span><div><h3>We confirm we received it</h3><p>You'll see confirmation on this page the moment you submit, and a confirmation email lands in your inbox within minutes. If anything is missing, we'll follow up and give you time to fix it.</p></div></li>
         <li class="tl-item"><span class="tl-date">Dec 1, 2026</span><div><h3>Every applicant hears back</h3><p>Not just the recipient — everyone gets an answer by email on or before this date.</p></div></li>
         <li class="tl-item"><span class="tl-date">Jan 2027</span><div><h3>Award is paid</h3><p>In time for the spring term, sent to your school or to you — whichever works better for your situation.</p></div></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- RUBRIC -->
+  <section id="rubric">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How we score</p>
+        <h2>The rubric, published.</h2>
+        <p>Two readers score every application independently, using exactly this. Highest combined score receives the award.</p>
+      </div>
+      <div class="rubric">
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>A path of your own</h3>
+          <p>How clearly you describe what you want to study, build, or become. Big or small, conventional or not — clarity and genuine interest are what score, not ambition for its own sake.</p>
+        </div>
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>Steps already taken</h3>
+          <p>Anything you've done to move toward that path: classes, projects, jobs, self-teaching, caregiving, advocacy. Effort counts wherever it happened — not just in school.</p>
+        </div>
+        <div class="rubric-card">
+          <p class="pts">1–5 points, per reader</p>
+          <h3>What $1,000 changes</h3>
+          <p>How the award concretely helps: tuition, a laptop, transportation, housing, fewer work hours. Specific and honest beats dramatic.</p>
+        </div>
+      </div>
+      <div class="rubric-rules">
+        <h3>Fairness rules</h3>
+        <ul>
+          <li>Writing style is not scored. Spelling, grammar, and "polish" earn zero points — substance does.</li>
+          <li>Video and audio responses are scored with the identical rubric.</li>
+          <li>A reader with any personal connection to an applicant steps out, and a replacement reader scores instead.</li>
+          <li>Ties are broken by the "What $1,000 changes" score, then by a joint re-read.</li>
+          <li>Scores are final, but any applicant can ask for their own scores and we'll share them.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -456,44 +515,6 @@
     </div>
   </section>
 
-  <!-- RUBRIC -->
-  <section id="rubric">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">How we score</p>
-        <h2>The rubric, published.</h2>
-        <p>Two readers score every application independently, using exactly this. Highest combined score receives the award.</p>
-      </div>
-      <div class="rubric">
-        <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
-          <h3>A path of your own</h3>
-          <p>How clearly you describe what you want to study, build, or become. Big or small, conventional or not — clarity and genuine interest are what score, not ambition for its own sake.</p>
-        </div>
-        <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
-          <h3>Steps already taken</h3>
-          <p>Anything you've done to move toward that path: classes, projects, jobs, self-teaching, caregiving, advocacy. Effort counts wherever it happened — not just in school.</p>
-        </div>
-        <div class="rubric-card">
-          <p class="pts">1–5 points, per reader</p>
-          <h3>What $2,500 changes</h3>
-          <p>How the award concretely helps: tuition, a laptop, transportation, housing, fewer work hours. Specific and honest beats dramatic.</p>
-        </div>
-      </div>
-      <div class="rubric-rules">
-        <h3>Fairness rules</h3>
-        <ul>
-          <li>Writing style is not scored. Spelling, grammar, and "polish" earn zero points — substance does.</li>
-          <li>Video and audio responses are scored with the identical rubric.</li>
-          <li>A reader with any personal connection to an applicant steps out, and a replacement reader scores instead.</li>
-          <li>Ties are broken by the "What $2,500 changes" score, then by a joint re-read.</li>
-          <li>Scores are final, but any applicant can ask for their own scores and we'll share them.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- DONATE -->
   <section id="donate" class="donate">
     <div class="wrap">
@@ -505,7 +526,7 @@
       <div class="tiers">
         <button class="tier" type="button" onclick="donate(25)"><strong>$25</strong><span>Covers application accessibility supports — alternative formats, captioning, and more.</span></button>
         <button class="tier" type="button" onclick="donate(100)"><strong>$100</strong><span>Puts real money toward books and supplies for a student's first semester.</span></button>
-        <button class="tier" type="button" onclick="donate(2500)"><strong>$2,500</strong><span>Funds one full scholarship. We'll name the award after you or someone you love, if you'd like.</span></button>
+        <button class="tier" type="button" onclick="donate(1000)"><strong>$1,000</strong><span>Funds one full scholarship. We'll name the award after you or someone you love, if you'd like.</span></button>
       </div>
       <div class="donate-actions">
         <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
