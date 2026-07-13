@@ -81,7 +81,7 @@ function processApplication_(doc) {
     to: NOTIFY_EMAIL,
     name: 'Rose Kelley Scholarship',
     subject: 'New scholarship application: ' + name,
-    body:
+    body: // plain-text fallback
       'A new application just arrived.\n\n' +
       'Name: ' + name + '\n' +
       'Email: ' + email + '\n' +
@@ -89,7 +89,8 @@ function processApplication_(doc) {
       'Where they are: ' + stage + '\n\n' +
       'Their path:\n' + essay + '\n\n' +
       'View all applications:\n' +
-      'https://console.firebase.google.com/project/' + PROJECT_ID + '/firestore'
+      'https://console.firebase.google.com/project/' + PROJECT_ID + '/firestore',
+    htmlBody: notificationHtml_(name, email, school, stage, essay)
   });
 }
 
@@ -121,6 +122,40 @@ function confirmationHtml_(firstName) {
       '</div>' +
       '<div style="padding:16px 36px;border-top:1px solid #E9DCDA;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8a767d;">' +
         'Rose Kelley Scholarship &middot; <a href="https://rosekelleyscholarship.org" style="color:#9C5560;">rosekelleyscholarship.org</a></div>' +
+    '</div>' +
+  '</div>';
+}
+
+/**
+ * The owner notification, in the same rose gold theme.
+ */
+function notificationHtml_(name, email, school, stage, essay) {
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const row = (label, value) =>
+    '<tr>' +
+      '<td style="padding:7px 16px 7px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#9C5560;white-space:nowrap;vertical-align:top;">' + label + '</td>' +
+      '<td style="padding:7px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#33232A;">' + esc(value) + '</td>' +
+    '</tr>';
+  return '' +
+  '<div style="background:#FBF7F5;padding:32px 16px;">' +
+    '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #E9DCDA;border-top:4px solid #B76E79;border-radius:14px;overflow:hidden;">' +
+      '<div style="padding:34px 36px 30px;font-family:Georgia,\'Times New Roman\',serif;color:#33232A;">' +
+        '<div style="font-size:34px;line-height:1;color:#B76E79;">&#8734;</div>' +
+        '<div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9C5560;font-family:Arial,Helvetica,sans-serif;font-weight:bold;margin:14px 0 6px;">New application</div>' +
+        '<h1 style="margin:0 0 18px;font-size:26px;font-weight:normal;color:#33232A;">' + esc(name) + '</h1>' +
+        '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 0 20px;">' +
+          row('Email', email) +
+          row('School', school) +
+          row('Where they are', stage) +
+        '</table>' +
+        '<div style="background:#F9ECEA;border-radius:10px;padding:18px 22px;margin:0 0 24px;">' +
+          '<p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#9C5560;">Their path</p>' +
+          '<p style="margin:0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#4a3035;white-space:pre-wrap;">' + esc(essay) + '</p>' +
+        '</div>' +
+        '<a href="https://console.firebase.google.com/project/' + PROJECT_ID + '/firestore" style="display:inline-block;padding:11px 24px;border-radius:999px;background:#B76E79;color:#3A2228;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;">View all applications</a>' +
+      '</div>' +
+      '<div style="padding:16px 36px;border-top:1px solid #E9DCDA;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8a767d;">' +
+        'The applicant received their themed confirmation automatically.</div>' +
     '</div>' +
   '</div>';
 }
