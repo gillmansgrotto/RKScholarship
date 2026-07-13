@@ -44,6 +44,7 @@ function processApplication_(doc) {
     const firstName = name.split(' ')[0] || name;
     MailApp.sendEmail({
       to: email,
+      name: 'Rose Kelley Scholarship',
       replyTo: NOTIFY_EMAIL,
       subject: 'We received your application — Rose Kelley Scholarship',
       body: // plain-text fallback for clients that prefer it
@@ -68,6 +69,7 @@ function processApplication_(doc) {
     markDocument_(docId, 'confirmationError');
     MailApp.sendEmail({
       to: NOTIFY_EMAIL,
+      name: 'Rose Kelley Scholarship',
       subject: '⚠️ Could not send confirmation — ' + name,
       body: 'Sending the confirmation email failed for this applicant.\n\n' +
         'Name: ' + name + '\nEmail: ' + email + '\nError: ' + err + '\n\n' +
@@ -77,6 +79,7 @@ function processApplication_(doc) {
 
   MailApp.sendEmail({
     to: NOTIFY_EMAIL,
+    name: 'Rose Kelley Scholarship',
     subject: 'New scholarship application: ' + name,
     body:
       'A new application just arrived.\n\n' +
