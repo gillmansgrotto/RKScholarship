@@ -115,8 +115,8 @@
   .mobile-menu .sun{display:none}
   :root[data-theme="dark"] .mobile-menu .sun{display:block}
   :root[data-theme="dark"] .mobile-menu .moon{display:none}
-  @media(max-width:870px){.menu-btn{display:grid}.theme-li{display:none}}
-  @media(min-width:871px){.mobile-menu{display:none !important}}
+  @media(max-width:945px){.menu-btn{display:grid}.theme-li{display:none}}
+  @media(min-width:946px){.mobile-menu{display:none !important}}
   ::selection{background:#F0D5D9;color:#33232A}
   :root[data-theme="dark"] ::selection{background:#5A3F49;color:#F2E6E9}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -159,10 +159,10 @@
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--max);margin:0 auto}
-  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-0.01em}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-0.01em;white-space:nowrap}
   .brand svg{flex-shrink:0}
   .nav-links{display:flex;gap:24px;align-items:center;list-style:none}
-  .nav-links a{color:var(--ink-soft);text-decoration:none;font-size:15px;font-weight:700}
+  .nav-links a{color:var(--ink-soft);text-decoration:none;font-size:15px;font-weight:700;white-space:nowrap}
   .nav-links a:hover{color:var(--ink)}
   .btn{
     display:inline-block;padding:12px 24px;border-radius:999px;border:2px solid var(--ink);
@@ -177,7 +177,7 @@
   .btn.ghost:hover{background:var(--ink);color:var(--paper)}
   .btn.ghost.inverse{color:#FBF7F5;border-color:#FBF7F5}
   .btn.ghost.inverse:hover{background:#FBF7F5;border-color:#FBF7F5;color:#33232A}
-  @media(max-width:870px){.nav-links li:not(.keep){display:none}}
+  @media(max-width:945px){.nav-links li:not(.keep){display:none}}
 
   /* ---------- Hero ---------- */
   .hero{padding:88px 24px 72px;text-align:center;position:relative;overflow:hidden;z-index:0}
