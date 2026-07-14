@@ -358,11 +358,16 @@
     background:#3E2C33;border:1px solid #52424A;border-top:3px solid var(--gold);
     border-radius:var(--radius);
     padding:28px;text-align:left;cursor:pointer;color:#FBF7F5;font-family:inherit;
-    transition:border-color .15s ease;
+    display:flex;flex-direction:column;
+    transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease;
   }
-  .tier:hover{border-color:var(--gold)}
+  .tier:hover,.tier:focus-visible{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.3)}
   .tier strong{font-family:'Fraunces',serif;font-size:30px;display:block;color:var(--gold);margin-bottom:6px}
   .tier span{font-size:15px;color:#D6C8CC}
+  .tier .tier-cta{display:block;margin-top:auto;padding-top:18px;font-size:14px;font-weight:700;color:var(--gold)}
+  .tier .tier-cta::after{content:"→";display:inline-block;margin-left:6px;transition:transform .15s ease}
+  .tier:hover .tier-cta,.tier:focus-visible .tier-cta{text-decoration:underline;text-underline-offset:3px}
+  .tier:hover .tier-cta::after,.tier:focus-visible .tier-cta::after{transform:translateX(4px)}
   .donate-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .donate-fine{margin-top:18px;font-size:14px;color:#B09FA7;max-width:720px}
 
@@ -720,12 +725,12 @@
         <p>This scholarship is personally run and personally funded. Every dollar we receive goes straight into the award — we cover all costs of running it ourselves.</p>
       </div>
       <div class="tiers">
-        <button class="tier" type="button" onclick="donate(25)"><strong>$25</strong><span>Covers application accessibility supports — alternative formats, captioning, and more.</span></button>
-        <button class="tier" type="button" onclick="donate(100)"><strong>$100</strong><span>Puts real money toward books and supplies for a student's first semester.</span></button>
-        <button class="tier" type="button" onclick="donate(1000)"><strong>$1,000</strong><span>Funds one full scholarship. We'll name the award after you or someone you love, if you'd like.</span></button>
+        <button class="tier" type="button" onclick="donate(25)"><strong>$25</strong><span>Covers application accessibility supports — alternative formats, captioning, and more.</span><span class="tier-cta">Give $25 on GoFundMe</span></button>
+        <button class="tier" type="button" onclick="donate(100)"><strong>$100</strong><span>Puts real money toward books and supplies for a student's first semester.</span><span class="tier-cta">Give $100 on GoFundMe</span></button>
+        <button class="tier" type="button" onclick="donate(1000)"><strong>$1,000</strong><span>Funds one full scholarship. We'll name the award after you or someone you love, if you'd like.</span><span class="tier-cta">Give $1,000 on GoFundMe</span></button>
       </div>
       <div class="donate-actions">
-        <button class="btn gold" type="button" onclick="donate(0)">Donate now</button>
+        <button class="btn gold" type="button" onclick="donate(0)">Donate on GoFundMe</button>
         <a class="btn ghost inverse" href="mailto:rosekelleyscholarship@gmail.com?subject=Donation%20question">Questions? Email us</a>
       </div>
       <p class="donate-fine" id="donate-fine">We're not a registered nonprofit (yet), so contributions are personal gifts and aren't tax-deductible. What we can promise: every dollar we receive goes to a student, we keep <a href="/ledger" style="color:#DCA8B0">a public ledger of every dollar in and out</a>, and we'll email you when your dollars are awarded.</p>
